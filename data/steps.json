@@ -1,0 +1,150 @@
+[
+  {
+    "id": "call-bank",
+    "priority": 1,
+    "urgency": "now",
+    "titleKey": "step.call-bank.title",
+    "bodyKey": "step.call-bank.body",
+    "appliesTo": {
+      "payment": [
+        "bank_transfer"
+      ],
+      "window": [
+        "under_1h"
+      ]
+    },
+    "actions": [
+      {
+        "type": "script",
+        "scriptId": "bank-call"
+      }
+    ],
+    "sources": [
+      {
+        "name": "malaysia.gov.my - NSRC 997 hotline",
+        "url": "https://www.malaysia.gov.my/en/topics/nsrc-997-hotline",
+        "retrievedOn": "2026-10-23"
+      }
+    ],
+    "picker": "banks"
+  },
+  {
+    "id": "report-in-app",
+    "priority": 1,
+    "urgency": "now",
+    "titleKey": "step.report-in-app.title",
+    "bodyKey": "step.report-in-app.body",
+    "appliesTo": {
+      "payment": [
+        "ewallet"
+      ],
+      "window": [
+        "under_1h"
+      ]
+    },
+    "actions": [],
+    "sources": [
+      {
+        "name": "malaysia.gov.my - NSRC 997 hotline",
+        "url": "https://www.malaysia.gov.my/en/topics/nsrc-997-hotline",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  },
+  {
+    "id": "call-nsrc",
+    "priority": 2,
+    "urgency": "now",
+    "titleKey": "step.call-nsrc.title",
+    "bodyKey": "step.call-nsrc.body",
+    "appliesTo": {
+      "payment": "any",
+      "window": "any"
+    },
+    "actions": [
+      {
+        "type": "call",
+        "labelKey": "action.call_997",
+        "tel": "997",
+        "source": {
+          "name": "malaysia.gov.my - NSRC 997 hotline",
+          "url": "https://www.malaysia.gov.my/en/topics/nsrc-997-hotline",
+          "retrievedOn": "2026-10-23"
+        }
+      }
+    ],
+    "sources": [
+      {
+        "name": "malaysia.gov.my - NSRC 997 hotline",
+        "url": "https://www.malaysia.gov.my/en/topics/nsrc-997-hotline",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  },
+  {
+    "id": "police-report",
+    "priority": 3,
+    "urgency": "today",
+    "titleKey": "step.police-report.title",
+    "bodyKey": "step.police-report.body",
+    "appliesTo": {
+      "payment": "any",
+      "window": "any"
+    },
+    "actions": [],
+    "sources": [
+      {
+        "name": "malaysia.gov.my - NSRC 997 hotline",
+        "url": "https://www.malaysia.gov.my/en/topics/nsrc-997-hotline",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  },
+  {
+    "id": "semak-mule",
+    "priority": 4,
+    "urgency": "today",
+    "titleKey": "step.semak-mule.title",
+    "bodyKey": "step.semak-mule.body",
+    "appliesTo": {
+      "payment": [
+        "bank_transfer",
+        "ewallet"
+      ],
+      "window": "any"
+    },
+    "actions": [
+      {
+        "type": "link",
+        "labelKey": "action.open_semak_mule",
+        "url": "https://semakmule.rmp.gov.my"
+      }
+    ],
+    "sources": [
+      {
+        "name": "PDRM CCID Semak Mule portal",
+        "url": "https://semakmule.rmp.gov.my",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  },
+  {
+    "id": "no-recovery-fee",
+    "priority": 5,
+    "urgency": "later",
+    "titleKey": "step.no-recovery-fee.title",
+    "bodyKey": "step.no-recovery-fee.body",
+    "appliesTo": {
+      "payment": "any",
+      "window": "any"
+    },
+    "actions": [],
+    "sources": [
+      {
+        "name": "Malay Mail, 13 Apr 2026: police warn of fake recovery offers (PDRM statement)",
+        "url": "https://www.malaymail.com/amp/news/malaysia/2026/04/13/pay-more-lose-more-police-warn-of-double-scam-trapping-victims-with-fake-recovery-offers/216147",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  }
+]

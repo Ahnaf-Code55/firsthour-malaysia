@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 1.125rem/1.55 var(--font); }
+main, .top, .disclaimer { max-width: 42rem; margin: 0 auto; padding: 0 var(--space); }
+.top { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space); padding-bottom: .5rem; }
+.brand { font-weight: 700; color: var(--accent); text-decoration: none; font-size: 1.25rem; }
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 1rem 0 .25rem; }
+h2 { font-size: 1.3rem; margin: 2rem 0 .5rem; }
+h3 { font-size: 1.15rem; margin: .5rem 0 .25rem; }
+a { color: var(--accent); }
+label { display: block; font-weight: 600; margin-top: 1.25rem; }
+select, textarea { width: 100%; font: inherit; padding: .7rem; border: 2px solid var(--line); border-radius: 8px; background: #fff; color: inherit; }
+button, a.primary { font: inherit; font-weight: 600; }
+button.primary, a.primary { display: inline-block; min-height: 48px; padding: .7rem 1.2rem; margin: .75rem .5rem .25rem 0; background: var(--accent); color: var(--accent-text); border: 0; border-radius: 10px; text-decoration: none; cursor: pointer; }
+button.lang { min-height: 44px; padding: 0 1rem; border: 2px solid var(--accent); background: transparent; color: var(--accent); border-radius: 10px; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.muted { color: var(--muted); }
+.banner { background: #fff4d6; border: 2px solid #c9a227; border-radius: 10px; padding: .75rem 1rem; }
+.steps { list-style: none; padding: 0; counter-reset: s; }
+.steps li { background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem; }
+.steps li.done { opacity: .65; }
+.tick { display: flex; gap: .5rem; align-items: center; float: right; margin: 0; font-weight: 500; }
+.tick input { width: 1.6rem; height: 1.6rem; accent-color: var(--accent); }
+.source { font-size: .9rem; color: var(--muted); margin-bottom: 0; }
+.timeline { padding-left: 1.2rem; }
+.disclaimer { color: var(--muted); font-size: .9rem; padding-top: 2rem; padding-bottom: 2rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

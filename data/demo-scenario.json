@@ -1,0 +1,37 @@
+{
+  "answers": {
+    "payment": "bank_transfer",
+    "window": "under_1h"
+  },
+  "evidence": "Caller (+60 11-5555 0100): Good afternoon, this is Inspector Faiz from Bukit Aman. Your passport number is linked to a money laundering case. Do not tell anyone or you will be arrested.\nCaller: To prove your money is clean, move your savings to the Bank Negara safe account today. Account 1234567890123, name Ali Bin Hassan.\nMe: I only have RM1,200 now.\nCaller: That is enough. Transfer it now and send me the receipt.\nMe: I have transferred RM1,200 at 14:32. Receipt sent.\nCaller: Thank you. Wait for our officer to call you.",
+  "facts": {
+    "amount": {
+      "value": {
+        "value": 1200,
+        "currency": "MYR"
+      },
+      "snippet": "I have transferred RM1,200 at 14:32"
+    },
+    "occurredAt": {
+      "value": "14:32 today",
+      "snippet": "at 14:32"
+    },
+    "payee": {
+      "value": "Ali Bin Hassan",
+      "snippet": "name Ali Bin Hassan"
+    },
+    "account": {
+      "value": "1234567890123",
+      "snippet": "Account 1234567890123"
+    },
+    "startedHow": {
+      "value": "A phone call from someone claiming to be a police inspector",
+      "snippet": "this is Inspector Faiz from Bukit Aman"
+    },
+    "channel": {
+      "value": "phone_call",
+      "snippet": "Caller (+60 11-5555 0100)"
+    }
+  },
+  "followUp": "Hi, I am Officer Daniel from the NSRC recovery unit. We can recover your RM1,200 but you must first pay a RM300 processing fee. Click https://nsrc-refund.example/claim to open your case."
+}
