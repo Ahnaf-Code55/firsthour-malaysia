@@ -1,6 +1,6 @@
 # Shared contract (draft, final once `devpost/spec.md` is merged)
 
-Everyone builds against these shapes. Change them only by pull request that all four owners approve.
+Everyone builds against these shapes. **POC scope (approved in devpost/scope.md):** payments `bank_transfer` and `ewallet`, window `under_1h`, languages English and Bangla. The wider types stay in the union for later. Change them only by pull request that all four owners approve.
 
 **Proposed stack:** React + TypeScript + Vite, static app, pure functions for logic, JSON files for content, optional small Node endpoint for the AI extraction call. Fixture mode (`VITE_FIXTURE=1`) must run the whole demo with **no API key and no network**.
 
@@ -10,7 +10,7 @@ data/steps.json              Rasha   knowledge base of steps
 data/call-scripts.json       Rasha   bank-call script templates
 data/recovery-rules.json     Rasha   recovery-fee scam red flags
 data/demo-scenario.json      Rasha   fictional demo case (inputs + evidence text)
-src/i18n/{en,ms,bn}.json     Rasha   all wording; same keys in all three
+src/i18n/{en,bn}.json     Rasha   all wording; same keys in both
 src/lib/extract.ts           Ahnaf   evidence -> facts (fixture + AI)
 src/lib/plan.ts              Ahnaf   facts + answers + steps -> plan (pure, tested)
 src/lib/scan.ts              Ahnaf   follow-up message -> red flags (pure, tested)
@@ -56,5 +56,5 @@ type RedFlag = { id: string; labelKey: string; explainKey: string; sources: Sour
 ## Rules of the contract
 - **Numbers and instructions come only from `data/*.json`.** The AI may extract facts from evidence; it may never invent or change a phone number, hour or step.
 - Every `Step` has at least one `Source` with `retrievedOn`.
-- Every i18n key exists in `en`, `ms` and `bn`. `src/i18n/meta.json` records `{ "ms": {"reviewedBy": "..."}, "bn": {"reviewedBy": "..."} }`; unreviewed emergency text is not allowed in the demo.
+- Every i18n key exists in `en` and `bn` (no Malay: nobody on the team can review it). `src/i18n/meta.json` records `{ "bn": {"reviewedBy": "..."} }`; unreviewed emergency text is not allowed in the demo.
 - Fictional demo data only.

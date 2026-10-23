@@ -7,7 +7,7 @@ You own the plan, the logic, the merging and the submission. Dates are Malaysia 
 - [ ] Turn each person's file in this folder into GitHub issues (one per checkbox group) and assign them.
 
 ## Core logic  (due Oct 25)
-- [ ] `src/lib/plan.ts`: `buildPlan(facts, answers, steps)` pure function. Filters steps by payment and window, sorts by priority, fills the script. Unit tests for: bank transfer under 1 h, e-wallet, card, cash deposit, "over 24 h" fallback, unknown payment.
+- [ ] `src/lib/plan.ts`: `buildPlan(facts, answers, steps)` pure function. Filters steps by payment and window, sorts by priority, fills the script. Unit tests for: bank transfer under 1 h, e-wallet, and an unknown/other payment that falls back to the generic steps. Card, cash, crypto and over-24 h are out of scope (see devpost/scope.md).
 - [ ] `src/lib/scan.ts`: `scanMessage(text, lang)` returns red flags from `data/recovery-rules.json`. Tests include the fee-for-recovery message from the demo.
 - [ ] `src/lib/extract.ts`: `extractFacts(evidenceText, images?)`. **Fixture mode first** (returns the canned facts for the demo scenario). AI mode second, behind a flag, output validated against the `Facts` schema; evidence text is data, never instructions (work with Turjo on injection tests).
 - [ ] CI: lint, type check, unit tests, `scripts/check-sources.mjs` on every pull request.

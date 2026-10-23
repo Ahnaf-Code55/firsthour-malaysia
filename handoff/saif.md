@@ -4,7 +4,7 @@ You own everything the judges see. The video is mostly your screens, so polish m
 
 ## Foundation  (due Oct 24)
 - [ ] Vite + React + TypeScript project, routing, design tokens (colour, type, spacing), one calm, trustworthy visual style. Avoid generic "AI app" looks; it should feel like a careful, human helper.
-- [ ] Language switcher (EN / MS / BN) reading `src/i18n/*.json`. Bangla font that renders well on phones.
+- [ ] Language switcher (EN / BN) reading `src/i18n/*.json`. Bangla font that renders well on phones.
 - [ ] "Load demo scenario" button that loads `data/demo-scenario.json` (Rasha provides the data).
 
 ## Screens  (due Oct 25)
@@ -24,4 +24,4 @@ You own everything the judges see. The video is mostly your screens, so polish m
 - [ ] Run the demo script end to end three times with Rasha; fix anything that looks off on camera.
 
 ## Done means
-The 75-second demo runs smoothly in all three languages in fixture mode, on a phone-sized window and a laptop, with no layout breaks.
+The 75-second demo runs smoothly in both languages in fixture mode, on a phone-sized window and a laptop, with no layout breaks.

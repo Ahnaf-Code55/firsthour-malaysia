@@ -4,7 +4,7 @@ You own privacy, safe handling of evidence, and the final review. Dates are Mala
 
 ## Threat model and privacy  (due Oct 24)
 - [ ] `SECURITY.md`: what we collect (nothing stored), where evidence goes, what the AI call sees, what can go wrong, and what we do about it. One page.
-- [ ] A short plain-language "What we store" statement for the app (English; Rasha translates to Malay and Bangla).
+- [ ] A short plain-language "What we store" statement for the app (English; Rasha translates to Bangla).
 - [ ] Rules for the team: no analytics, no third-party scripts, no logging of evidence, API key only on the server side, never in the client bundle.
 
 ## Controls  (due Oct 25)
