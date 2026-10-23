@@ -1,6 +1,6 @@
 # Handoff
 
-Status: **scope and PRD approved** (`devpost/scope.md`, `devpost/prd.md`); `spec.md` is next. Tasks below are the owner split and become GitHub issues once the spec is done.
+Status: **scope and PRD approved** (`devpost/scope.md`, `devpost/prd.md`); `spec.md` approved; `5-build` is next. Tasks below are the owner split and become GitHub issues once the spec is done.
 
 ## Goal
 Win a top-3 prize ($1,250 / $750 / $500). Judged on **Design**, **Innovation/Idea**, **Presentation**. Reviewers do not run the code, so the **demo video** (1-3 min) must show the full journey working.
@@ -26,7 +26,7 @@ Pitch line: *"After the loss."* Other scam entries detect or prevent scams. Firs
 
 **Your task list:** [Ahnaf](handoff/ahnaf.md) · [Turjo](handoff/turjo.md) · [Saif](handoff/saif.md) · [Rasha](handoff/rasha.md)
 
-Saif and Rasha depend on one shared data shape (steps, sources, translations): [handoff/CONTRACT.md](handoff/CONTRACT.md). It is a draft until `spec.md` is merged; agree any change before building.
+Saif and Rasha depend on one shared data shape (steps, sources, translations): [handoff/CONTRACT.md](handoff/CONTRACT.md). It is final now that `spec.md` is approved; agree any change before building.
 
 ## Rules
 - Branches `<name>/<topic>`, pull requests into `main`, one reviewer from another owner. No direct pushes to `main`.
