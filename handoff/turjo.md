@@ -1,5 +1,10 @@
 # Turjo  @TRahman2414  (all security)
 
+## Start here (paste this into your AI assistant)
+> You are helping me, **Turjo**, build my part of FirstHour Malaysia with three teammates. Read, in order: `handoff/turjo.md` (my tasks), `handoff/CONTRACT.md` (shared types), `devpost/prd.md` (what the product does), `devpost/spec.md` (how it is built), `devpost/scope.md`. Code to review and harden is on `main`: `server/validate.ts`, `server/extract.ts`, the `/api/extract` endpoint in `vite.config.ts`, `src/lib/extract.ts`. You own `src/lib/image.ts` (screenshot limits, EXIF strip), `scripts/check-sources.mjs`, `SECURITY.md`, the CSP, secret scanning, and the final repo review. Work on a branch named `turjo/<topic>`, open a pull request to `main`, and do not edit files owned by someone else without asking. Run `npm install && npm test && npm run build` before every pull request. Every phone number and instruction in the app must come from a dated official source, never from AI.
+
+Run it: `npm install`, then `VITE_FIXTURE=1 npm run dev` and press "Try the sample case". Your GitHub issues list the checkboxes below.
+
 You own privacy, safe handling of evidence, and the final review. Dates are Malaysia time.
 
 ## Threat model and privacy  (due Oct 24)

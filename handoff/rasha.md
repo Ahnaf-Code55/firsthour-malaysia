@@ -1,5 +1,10 @@
 # Rasha  @RashaOsman2  (content, translations, QA, demo)
 
+## Start here (paste this into your AI assistant)
+> You are helping me, **Rasha**, build my part of FirstHour Malaysia with three teammates. Read, in order: `handoff/rasha.md` (my tasks), `handoff/CONTRACT.md` (shared types), `devpost/prd.md` (what the product does), `devpost/spec.md` (how it is built), `devpost/scope.md`. Seed content is on `main` in `data/*.json` and `src/i18n/en.json`; extend and correct it with official dated sources only, and create `src/i18n/bn.json` with the same keys plus `meta.json` (and wire `bn` into `src/i18n/t.ts`). Run `npm test`: it checks that every step has a dated source and every fact quote is in the demo evidence. Work on a branch named `rasha/<topic>`, open a pull request to `main`, and do not edit files owned by someone else without asking. Run `npm install && npm test && npm run build` before every pull request. Every phone number and instruction in the app must come from a dated official source, never from AI.
+
+Run it: `npm install`, then `VITE_FIXTURE=1 npm run dev` and press "Try the sample case". Your GitHub issues list the checkboxes below.
+
 You own what the app says and the story we tell. Everything must be correct, sourced and dated. Dates are Malaysia time.
 
 ## Knowledge base  (due Oct 24)
