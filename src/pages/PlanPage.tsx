@@ -14,7 +14,7 @@ export default function PlanPage({ lang, plan, facts, setFacts, ticks, readerOff
       <h1>{t(lang, "plan.heading")}</h1>
       {plan.outOfScope && <p className="banner">{t(lang, "plan.out_of_scope")}</p>}
       <h2>{t(lang, "facts.heading")}</h2>
-      {readerOffline ? <p className="banner">{t(lang, "facts.offline")}</p> : <p className="muted">{t(lang, "facts.hint")}</p>}
+      {readerOffline ? <p className="banner">{t(lang, "facts.offline")}</p> : Object.keys(facts).length === 0 && <p className="muted">{t(lang, "facts.hint")}</p>}
       <FactsList lang={lang} facts={facts} onChange={setFacts} />
       <h2>{t(lang, "plan.steps")}</h2>
       <StepList lang={lang} steps={plan.steps} ticks={ticks} onTick={onTick} />

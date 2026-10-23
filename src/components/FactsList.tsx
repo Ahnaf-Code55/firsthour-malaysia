@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { t } from "../i18n/t";
 import type { Fact, Facts, Lang } from "../types";
 
@@ -15,14 +16,25 @@ export default function FactsList({ lang, facts, onChange }: { lang: Lang; facts
     else next[k] = { value: text, edited: true };
     onChange(next);
   }
+  const [editing, setEditing] = useState(false);
+  const empty = KEYS.every((k) => !read(facts, k));
+  const show = editing || empty;
   return (
     <div className="facts">
+      {!empty && <button className="link" onClick={() => setEditing(!editing)}>{t(lang, editing ? "facts.done" : "facts.edit")}</button>}
       {KEYS.map((k) => {
         const f = facts[k];
+        if (!show && !f) return null;
         return (
           <div key={k} className="fact">
-            <label htmlFor={`f-${k}`}>{t(lang, `fact.${k}`)}</label>
-            <input id={`f-${k}`} value={read(facts, k)} inputMode={k === "amount" || k === "account" ? "numeric" : "text"} onChange={(e) => edit(k, e.target.value)} />
+            {show ? (
+              <>
+                <label htmlFor={`f-${k}`}>{t(lang, `fact.${k}`)}</label>
+                <input id={`f-${k}`} value={read(facts, k)} inputMode={k === "amount" || k === "account" ? "numeric" : "text"} onChange={(e) => edit(k, e.target.value)} />
+              </>
+            ) : (
+              <p className="row"><span className="muted">{t(lang, `fact.${k}`)}</span> <strong>{read(facts, k)}</strong></p>
+            )}
             {f?.edited ? <p className="quote">{t(lang, "fact.edited")}</p>
               : f?.snippet ? <p className="quote">{t(lang, "fact.from")} <q>{f.snippet}</q></p> : null}
           </div>

@@ -71,5 +71,7 @@
   "flag.agent.label": "It claims to be an official recovery officer",
   "flag.agent.explain": "Police have warned about fake NSRC and police recovery services. Check by calling 997 yourself.",
   "flag.link.label": "It sends a link to claim a refund",
-  "flag.link.explain": "Links to claim a refund are used to steal more money or details. Do not open it."
+  "flag.link.explain": "Links to claim a refund are used to steal more money or details. Do not open it.",
+  "facts.edit": "Edit facts",
+  "facts.done": "Done editing"
 }
