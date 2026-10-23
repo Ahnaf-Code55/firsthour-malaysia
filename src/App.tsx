@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import demo from "../data/demo-scenario.json";
 import steps from "../data/steps.json";
+import scripts from "../data/call-scripts.json";
 import { t } from "./i18n/t";
 import { extractFacts } from "./lib/extract";
 import { buildPlan } from "./lib/plan";
@@ -27,7 +28,7 @@ export default function App() {
   }, []);
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
 
-  const plan = useMemo(() => buildPlan(facts, answers, steps as Step[], ticks), [facts, answers, ticks]);
+  const plan = useMemo(() => buildPlan(facts, answers, steps as Step[], scripts, ticks), [facts, answers, ticks]);
 
   async function go(text: string, a: Answers) {
     const r = await extractFacts(text);
@@ -53,7 +54,7 @@ export default function App() {
       </header>
       <main>
         {page === "plan" ? (
-          <PlanPage lang={lang} plan={plan} facts={facts} ticks={ticks} readerOffline={readerOffline}
+          <PlanPage lang={lang} plan={plan} facts={facts} setFacts={setFacts} ticks={ticks} readerOffline={readerOffline}
             onTick={(id) => setTicks((x) => { const n = { ...x }; if (n[id]) delete n[id]; else n[id] = new Date().toISOString(); return n; })} />
         ) : (
           <StartPage lang={lang} answers={answers} setAnswers={setAnswers} evidence={evidence} setEvidence={setEvidence}

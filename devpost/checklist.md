@@ -5,7 +5,7 @@ status: approved
 
 # Build Checklist
 
-Build mode: fast (expert learner, hard deadline Oct 26 23:00 MYT). Team note: this session builds a working end-to-end scaffold on `main`; teammates refine their areas by pull request (see GitHub issues). Seed content in `data/` is limited to sources verified in this build and is marked for Rasha to extend.
+Build mode: fast (expert learner, hard deadline Oct 26 23:00 MYT). **Four people build this together.** Ahnaf's lane in this session: types, `plan.ts`, `scan.ts`, `extract.ts`, `server/`, tests, CI. Saif owns the UI, Rasha the content and translations, Turjo the security work (`handoff/*.md`, GitHub issues). The starter UI and seed data from slices 1-2 only give everyone something running to build on; teammates replace and extend them by pull request. Slices 4-6 are split by owner in the Revisions note.
 
 ## Slices
 
@@ -19,7 +19,7 @@ Build mode: fast (expert learner, hard deadline Oct 26 23:00 MYT). Team note: th
   Learner check: Run `VITE_FIXTURE=1 npm run dev`, press "Try the sample case", tick a step, see it in the timeline.
   Commit: `Add scaffold, plan builder and sample-case plan page`
 
-- [ ] **2. Facts with their evidence, an editable call script, Copy**
+- [x] **2. Facts with their evidence, an editable call script, Copy**
   Becomes usable: Each fact shows the exact line it came from; editing a fact updates the call script; Copy shows "Copied".
   Why now: This is the kernel (facts pinned to evidence) and the demo's main beat.
   PRD ref: `prd.md > Evidence and facts`, `prd.md > The call script`
@@ -92,3 +92,4 @@ Activity mode:
 
 ## Revisions
 - Seed steps use only sources checked on 2026-10-23: the malaysia.gov.my NSRC 997 page (24h hours, call within 24h, contact bank, police report), the Semak Mule portal address, and a Malay Mail report of PDRM's April 2026 recovery-scam warning. The gov page lists the police report as a separate step and does not say a 997 call counts as one (news said it does from Sept 2025), so the app words it as "ask the operator". Bank hotline numbers and the e-wallet provider page are intentionally absent: `data/banks.json` is empty and the e-wallet step has no number until Rasha sources them. The e-wallet step cites the same gov page and needs Rasha's confirmation.
+- Slices 1-2 included a starter UI and seed content, which overstepped the lane split (the user reminded us that four people build this together). Going forward this session builds only the lead's parts: `scan.ts` with tests (slice 3 logic), `server/validate.ts`, `server/extract.ts`, `extract.ts` (slice 5 logic), CI. Slice 3's CheckMessage component, slice 4 (language toggle, summary, states) and slice 6 (look, a11y, README) belong to Saif, Rasha and Turjo, as in their issues. `data/*.json` and `en.json` are seeds for Rasha to extend; `StepList`, `FactsList`, `CallScript`, pages and CSS are a starter for Saif to restyle.

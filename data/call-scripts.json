@@ -1,0 +1,6 @@
+[
+  {
+    "id": "bank-call",
+    "template": "Hello, I am calling to report a scam. At {time} I transferred {amount} by bank transfer to {payee}, account number {account}. {started} I believe the money went to a scammer. Please stop or recall this transfer, flag the receiving account, and give me a reference number and the next steps you need from me."
+  }
+]

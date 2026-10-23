@@ -24,3 +24,7 @@ button.lang { min-height: 44px; padding: 0 1rem; border: 2px solid var(--accent)
 .timeline { padding-left: 1.2rem; }
 .disclaimer { color: var(--muted); font-size: .9rem; padding-top: 2rem; padding-bottom: 2rem; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.fact input { width: 100%; font: inherit; padding: .6rem .7rem; border: 2px solid var(--line); border-radius: 8px; }
+.fact label { margin-top: .9rem; }
+.quote { font-size: .95rem; color: var(--muted); margin: .25rem 0 0; }
+.script { font-size: 1rem; line-height: 1.5; }

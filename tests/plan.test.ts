@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import steps from "../data/steps.json";
 import demo from "../data/demo-scenario.json";
-import { buildPlan } from "../src/lib/plan";
+import scripts from "../data/call-scripts.json";
+import { buildPlan, fillScript } from "../src/lib/plan";
 import type { Facts, Step } from "../src/types";
 
 const S = steps as Step[];
@@ -27,7 +28,7 @@ describe("buildPlan", () => {
     expect(p.steps.every((s) => s.appliesTo.payment === "any" && s.appliesTo.window === "any")).toBe(true);
   });
   it("ticks become timeline entries in time order", () => {
-    const p = buildPlan(facts, a("bank_transfer", "under_1h"), S, { "call-nsrc": "2026-10-23T06:40:00Z", "call-bank": "2026-10-23T06:35:00Z" });
+    const p = buildPlan(facts, a("bank_transfer", "under_1h"), S, scripts, { "call-nsrc": "2026-10-23T06:40:00Z", "call-bank": "2026-10-23T06:35:00Z" });
     expect(p.timeline.map((e) => e.text)).toEqual(["14:32 today", "call-bank", "call-nsrc"]);
   });
   it("every step has a dated source", () => {
@@ -35,6 +36,23 @@ describe("buildPlan", () => {
       expect(s.sources.length).toBeGreaterThan(0);
       for (const src of s.sources) expect(src.retrievedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
+  });
+});
+
+describe("call script", () => {
+  it("fills facts and shows placeholders for missing ones", () => {
+    const full = buildPlan(facts, a("bank_transfer", "under_1h"), S, scripts).script!.filled;
+    expect(full).toContain("RM 1,200");
+    expect(full).toContain("Ali Bin Hassan");
+    expect(full).toContain("1234567890123");
+    expect(fillScript(scripts[0].template, {})).toContain("[amount?]");
+  });
+  it("editing a fact changes the script", () => {
+    const edited = { ...facts, amount: { value: { value: 900, currency: "MYR" }, edited: true } };
+    expect(buildPlan(edited, a("bank_transfer", "under_1h"), S, scripts).script!.filled).toContain("RM 900");
+  });
+  it("e-wallet has no bank script", () => {
+    expect(buildPlan(facts, a("ewallet", "under_1h"), S, scripts).script).toBeUndefined();
   });
 });
 

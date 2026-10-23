@@ -46,5 +46,20 @@
   "step.semak-mule.title": "Check the account number on Semak Mule",
   "step.semak-mule.body": "Enter the account number the money went to. A match is a strong warning. No match does not mean the account is safe.",
   "step.no-recovery-fee.title": "Never pay anyone to get your money back",
-  "step.no-recovery-fee.body": "Police say nobody can guarantee recovery for a fee. Offers to recover your money are a second scam. Call 997 or visit a police station instead."
+  "step.no-recovery-fee.body": "Police say nobody can guarantee recovery for a fee. Offers to recover your money are a second scam. Call 997 or visit a police station instead.",
+  "facts.heading": "What we found",
+  "facts.hint": "Each fact shows the line it came from. Fix anything that is wrong; the call script updates.",
+  "facts.offline": "We could not read your messages. Fill in what you know. Your plan is the same.",
+  "fact.amount": "Amount sent (RM)",
+  "fact.occurredAt": "When",
+  "fact.payee": "Who was paid",
+  "fact.account": "Account number",
+  "fact.startedHow": "How it started",
+  "fact.from": "From your messages:",
+  "fact.edited": "Edited by you",
+  "script.heading": "What to say to your bank",
+  "script.copy": "Copy",
+  "script.copied": "Copied",
+  "script.manual": "Press Ctrl+C to copy",
+  "script.english": "This script is in English on purpose, so the bank can follow it."
 }
