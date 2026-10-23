@@ -108,11 +108,11 @@ Header control on every page; sets the language in memory and swaps all strings.
 PRD ref: `prd.md > Language`.
 
 ### Plan builder (`src/lib/plan.ts`)
-Pure function `buildPlan(facts, answers, steps, scripts, ticks, now)`: filters steps by payment and window (`appliesTo`), falls back to `any` steps when out of scope, sorts by `priority`, fills the script, builds the timeline. Unit tested.
+Pure function `buildPlan(facts, answers, steps, scripts, ticks)`: filters steps by payment and window (`appliesTo`), falls back to `any` steps when out of scope, sorts by `priority`, fills the script, builds the timeline. Unit tested.
 PRD ref: `prd.md > The plan`, `prd.md > The call script`.
 
 ### Message scanner (`src/lib/scan.ts`)
-Pure function `scanMessage(text, lang)`: lowercases and checks each rule's patterns (English and Bangla keyword/regex lists) from `data/recovery-rules.json`; returns matching `RedFlag`s. Unit tested with the demo fee message.
+Pure function `scanMessage(text, rules)`: tests each rule's patterns (English and Bangla regex lists, both languages always checked) from `data/recovery-rules.json`; returns matching `RedFlag`s. Unit tested with the demo fee message.
 PRD ref: `prd.md > Check a message`.
 
 ### Fact reader (`src/lib/extract.ts`, `server/extract.ts`)

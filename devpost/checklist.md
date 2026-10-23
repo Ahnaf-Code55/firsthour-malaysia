@@ -29,7 +29,7 @@ Build mode: fast (expert learner, hard deadline Oct 26 23:00 MYT). **Four people
   Learner check: Edit the amount and watch the script change; press Copy.
   Commit: `Add facts with evidence, call script and copy`
 
-- [ ] **3. Check a message flags recovery-fee scams**
+- [x] **3. Check a message flags recovery-fee scams**
   Becomes usable: Paste the sample fee message, get a red warning with reason and PDRM source; neutral text gets the "never pay" line.
   Why now: The second half of the kernel; pure logic, quick to verify.
   PRD ref: `prd.md > Check a message`
@@ -49,7 +49,7 @@ Build mode: fast (expert learner, hard deadline Oct 26 23:00 MYT). **Four people
   Learner check: Switch to Bangla mid-case, open the summary, try "Other" payment.
   Commit: `Add language toggle, printable summary and boundary states`
 
-- [ ] **5. Live fact reader with validation**
+- [x] **5. Live fact reader with validation**
   Becomes usable: With an API key, pasted text or a screenshot is read into facts by the server; bad or hostile replies are dropped.
   Why now: Riskiest unfamiliar piece; built after the fixture path so the demo never depends on it.
   PRD ref: `prd.md > Evidence and facts`, `prd.md > States and Boundaries`
@@ -93,3 +93,5 @@ Activity mode:
 ## Revisions
 - Seed steps use only sources checked on 2026-10-23: the malaysia.gov.my NSRC 997 page (24h hours, call within 24h, contact bank, police report), the Semak Mule portal address, and a Malay Mail report of PDRM's April 2026 recovery-scam warning. The gov page lists the police report as a separate step and does not say a 997 call counts as one (news said it does from Sept 2025), so the app words it as "ask the operator". Bank hotline numbers and the e-wallet provider page are intentionally absent: `data/banks.json` is empty and the e-wallet step has no number until Rasha sources them. The e-wallet step cites the same gov page and needs Rasha's confirmation.
 - Slices 1-2 included a starter UI and seed content, which overstepped the lane split (the user reminded us that four people build this together). Going forward this session builds only the lead's parts: `scan.ts` with tests (slice 3 logic), `server/validate.ts`, `server/extract.ts`, `extract.ts` (slice 5 logic), CI. Slice 3's CheckMessage component, slice 4 (language toggle, summary, states) and slice 6 (look, a11y, README) belong to Saif, Rasha and Turjo, as in their issues. `data/*.json` and `en.json` are seeds for Rasha to extend; `StepList`, `FactsList`, `CallScript`, pages and CSS are a starter for Saif to restyle.
+- Slice 3 delivered the logic (`scan.ts`, `recovery-rules.json` seed, tests); the CheckMessage component is Saif's. Slice 5 delivered `server/validate.ts`, `server/extract.ts`, the Vite `/api/extract` endpoint and the client `extractFacts` with fixture fallback; unit tests pass and the endpoint returns 503 `no_key` without a key. A live call with a real `ANTHROPIC_API_KEY` is **unverified** (no key in this environment), as is the model id; `src/lib/image.ts` (screenshot limits, EXIF strip) is Turjo's.
+- `scanMessage` takes the rules as an argument and tests both languages' patterns, so the spec signature `scanMessage(text, lang)` changed to `scanMessage(text, rules)`. Bangla patterns are a seed for Rasha to review.

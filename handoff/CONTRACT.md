@@ -60,7 +60,7 @@ type Ticks = Record<string, string>;                      // stepId -> ISO time
 type ExtractResult = { facts: Facts; source: "live" | "fixture" | "offline" };
 
 type Plan = { steps: Step[]; script?: { id: string; filled: string }; timeline: TimelineEvent[]; outOfScope: boolean };
-// buildPlan(facts, answers, steps, scripts, ticks, now) -> Plan. Out of scope = only steps with appliesTo "any" (generic).
+// buildPlan(facts, answers, steps, scripts, ticks) -> Plan (src/lib/plan.ts, already on main). scanMessage(text, rules) -> RedFlag[] (src/lib/scan.ts, on main). extractFacts(evidence, image?) -> ExtractResult (src/lib/extract.ts, on main). Out of scope = only steps with appliesTo "any" (generic).
 type TimelineEvent = { at: string; labelKey?: string; text?: string; snippet?: string };
 type RedFlag = { id: string; labelKey: string; explainKey: string; sources: Source[] };
 ```
@@ -69,6 +69,6 @@ type RedFlag = { id: string; labelKey: string; explainKey: string; sources: Sour
 - **Numbers and instructions come only from `data/*.json`.** The AI may extract facts from evidence; it may never invent or change a phone number, hour or step.
 - Every `Step` has at least one `Source` with `retrievedOn`.
 - Every i18n key exists in `en` and `bn` (no Malay: nobody on the team can review it). `src/i18n/meta.json` records `{ "bn": {"reviewedBy": "..."} }`; unreviewed emergency text is not allowed in the demo.
-- A fact survives `server/validate.ts` only if its `snippet` appears verbatim in the evidence text. Missing facts show as `[amount?]` in the script.
+- A fact survives `server/validate.ts` only if its `snippet` appears verbatim in the evidence text. Missing facts show as `[amount?]` in the script. Call-script placeholders: `{time} {amount} {payee} {account} {started}`.
 - Steps that must show for every payment/time (997, police report) use `appliesTo: { payment: "any", window: "any" }`.
 - Fictional demo data only.

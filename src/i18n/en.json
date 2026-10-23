@@ -61,5 +61,15 @@
   "script.copy": "Copy",
   "script.copied": "Copied",
   "script.manual": "Press Ctrl+C to copy",
-  "script.english": "This script is in English on purpose, so the bank can follow it."
+  "script.english": "This script is in English on purpose, so the bank can follow it.",
+  "check.heading": "Got a message offering to get your money back? Check it.",
+  "check.button": "Check this message",
+  "check.none": "No known recovery-scam signs. Never pay to get money back.",
+  "check.warning": "Warning: this looks like a recovery scam",
+  "flag.fee.label": "It asks for a fee before returning your money",
+  "flag.fee.explain": "Police say nobody can guarantee recovery for a fee. Real recovery goes through the police and courts, not an upfront payment.",
+  "flag.agent.label": "It claims to be an official recovery officer",
+  "flag.agent.explain": "Police have warned about fake NSRC and police recovery services. Check by calling 997 yourself.",
+  "flag.link.label": "It sends a link to claim a refund",
+  "flag.link.explain": "Links to claim a refund are used to steal more money or details. Do not open it."
 }

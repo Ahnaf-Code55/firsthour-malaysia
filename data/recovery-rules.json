@@ -1,0 +1,66 @@
+[
+  {
+    "id": "recovery-fee",
+    "labelKey": "flag.fee.label",
+    "explainKey": "flag.fee.explain",
+    "patterns": {
+      "en": [
+        "(fee|pay|payment|deposit|charge)[^.]{0,70}(recover|refund|release|claim|retriev)",
+        "(recover|refund|release|retriev)[^.]{0,90}(fee|pay |payment|deposit|charge)"
+      ],
+      "bn": [
+        "(ফি|চার্জ|জমা|টাকা দিতে)[^।]{0,60}(ফেরত|উদ্ধার)",
+        "(ফেরত|উদ্ধার)[^।]{0,60}(ফি|চার্জ|জমা)"
+      ]
+    },
+    "sources": [
+      {
+        "name": "Malay Mail, 13 Apr 2026: police warn of fake recovery offers (PDRM statement)",
+        "url": "https://www.malaymail.com/amp/news/malaysia/2026/04/13/pay-more-lose-more-police-warn-of-double-scam-trapping-victims-with-fake-recovery-offers/216147",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  },
+  {
+    "id": "fake-agent",
+    "labelKey": "flag.agent.label",
+    "explainKey": "flag.agent.explain",
+    "patterns": {
+      "en": [
+        "(nsrc|pdrm|police|bank negara|bnm|nfcc|mcmc)[^.]{0,40}(recovery|refund)[^.]{0,20}(unit|officer|team|agent|service)",
+        "(officer|agent)[^.]{0,40}(recovery|refund)"
+      ],
+      "bn": [
+        "(পুলিশ|এনএসআরসি)[^।]{0,40}(উদ্ধার|ফেরত)[^।]{0,20}(অফিসার|টিম|সেবা)"
+      ]
+    },
+    "sources": [
+      {
+        "name": "Malay Mail, 13 Apr 2026: police warn of fake recovery offers (PDRM statement)",
+        "url": "https://www.malaymail.com/amp/news/malaysia/2026/04/13/pay-more-lose-more-police-warn-of-double-scam-trapping-victims-with-fake-recovery-offers/216147",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  },
+  {
+    "id": "refund-link",
+    "labelKey": "flag.link.label",
+    "explainKey": "flag.link.explain",
+    "patterns": {
+      "en": [
+        "(refund|claim|recover|case)[^.]{0,80}https?://",
+        "https?://\\S*(refund|claim|recover)"
+      ],
+      "bn": [
+        "(ফেরত|দাবি|উদ্ধার)[^।]{0,80}https?://"
+      ]
+    },
+    "sources": [
+      {
+        "name": "Malay Mail, 13 Apr 2026: police warn of fake recovery offers (PDRM statement)",
+        "url": "https://www.malaymail.com/amp/news/malaysia/2026/04/13/pay-more-lose-more-police-warn-of-double-scam-trapping-victims-with-fake-recovery-offers/216147",
+        "retrievedOn": "2026-10-23"
+      }
+    ]
+  }
+]
