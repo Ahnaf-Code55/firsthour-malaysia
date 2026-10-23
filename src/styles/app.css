@@ -37,3 +37,14 @@ button.lang { min-height: 44px; padding: 0 1rem; border: 2px solid var(--accent)
 .fact { padding-bottom: .1rem; border-bottom: 1px solid var(--line); }
 .facts .link { min-height: 36px; margin-top: -2.2rem; }
 h2 { margin-top: 1.25rem; }
+.back { text-decoration: none; padding-right: .4rem; }
+.fact .quote { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fact .quote q { quotes: "“" "”"; }
+.steps li { padding: .75rem 1rem; }
+.steps li h3 { margin-top: .25rem; }
+.steps li p { margin: .35rem 0; }
+.tick span { font-size: .95rem; }
+h1 { font-size: 1.6rem; margin-top: .5rem; }
+.fact .row { margin-top: .3rem; }
+.top { padding-top: .5rem; padding-bottom: 0; }
+.steps li .source { font-size: .85rem; line-height: 1.35; }

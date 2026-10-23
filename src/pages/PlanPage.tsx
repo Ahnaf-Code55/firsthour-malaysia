@@ -10,8 +10,7 @@ type Props = { lang: Lang; plan: Plan; facts: Facts; setFacts: (f: Facts) => voi
 export default function PlanPage({ lang, plan, facts, setFacts, ticks, readerOffline, onTick }: Props) {
   return (
     <section>
-      <p><a href="#/">{t(lang, "plan.back")}</a></p>
-      <h1>{t(lang, "plan.heading")}</h1>
+      <h1><a href="#/" className="back" aria-label={t(lang, "plan.back")}>‹</a> {t(lang, "plan.heading")}</h1>
       {plan.outOfScope && <p className="banner">{t(lang, "plan.out_of_scope")}</p>}
       <h2>{t(lang, "facts.heading")}</h2>
       {readerOffline ? <p className="banner">{t(lang, "facts.offline")}</p> : Object.keys(facts).length === 0 && <p className="muted">{t(lang, "facts.hint")}</p>}
