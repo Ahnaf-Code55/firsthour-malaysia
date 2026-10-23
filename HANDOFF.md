@@ -1,6 +1,6 @@
 # Handoff
 
-Status: **scope not written yet.** Plan docs (`devpost/scope.md`, `prd.md`, `spec.md`) land here next; tasks below are the owner split and will be refined into GitHub issues once scope is done.
+Status: **scope and PRD approved** (`devpost/scope.md`, `devpost/prd.md`); `spec.md` is next. Tasks below are the owner split and become GitHub issues once the spec is done.
 
 ## Goal
 Win a top-3 prize ($1,250 / $750 / $500). Judged on **Design**, **Innovation/Idea**, **Presentation**. Reviewers do not run the code, so the **demo video** (1-3 min) must show the full journey working.
@@ -21,7 +21,7 @@ Pitch line: *"After the loss."* Other scam entries detect or prevent scams. Firs
 |---|---|---|
 | Ahnaf (lead, Devpost Representative) | @Ahnaf-Code55 | scope/PRD/spec, evidence-to-facts extraction (with a fixture mode so the demo runs without any API key), merging, Devpost submission |
 | Turjo | @TRahman2414 | **all security**: privacy rules (nothing stored), safe handling of uploads and text, threat model, dependency and secrets scan, check that every number has a dated source, final review before submission |
-| Saif | @hsaif2208-a11y | **all screens**: intake form, text paste and screenshot upload, EN/BN switcher, action list, evidence timeline, call-script screen with copy button, recovery-scam warning banner, printable report, mobile layout, demo polish and animation, seeded demo scenario wired into the UI |
+| Saif | @hsaif2208-a11y | **all screens**: the three surfaces in `devpost/prd.md` (Start, Your plan, Printable summary): intake, facts with evidence, action list with ticks, call script with Copy, timeline, "Check a message" warning, EN/BN toggle, mobile layout, demo polish, sample case |
 | Rasha | @RashaOsman2 | **content and demo**: knowledge base of 6 to 8 steps (bank transfer under 1 h, plus e-wallet) (each with a dated official source URL), call-script templates, recovery-scam red-flag rules, all emergency wording in EN/BN, QA of 5 scam scenarios, README and Devpost description, demo script and video |
 
 **Your task list:** [Ahnaf](handoff/ahnaf.md) · [Turjo](handoff/turjo.md) · [Saif](handoff/saif.md) · [Rasha](handoff/rasha.md)

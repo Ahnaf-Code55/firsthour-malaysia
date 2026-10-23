@@ -6,6 +6,7 @@ You own what the app says and the story we tell. Everything must be correct, sou
 - [ ] `data/steps.json`: 6 to 8 steps for bank transfer under 1 h plus e-wallet (card, cash, crypto and over-24 h are out of scope, see `devpost/scope.md`). Follow `handoff/CONTRACT.md`. Typical steps: call your bank's fraud line, call NSRC 997, check the account number with Semak Mule, make a police report, keep evidence, change passwords, warn about recovery-fee offers.
 - [ ] Every step has a source URL and `retrievedOn` date from an official page (malaysia.gov.my, PDRM, BNM, the bank's own page). **No bank hotline numbers unless taken from that bank's official page.**
 - [ ] Where sources disagree (NSRC hours: some say 24/7, some say 8 am to 8 pm) record both and word it safely, for example "call now; if no answer, contact your bank".
+- [ ] Bank picker: official fraud-line pages for 3 banks (choose the 3 most used by students; Maybank and UOB pages are already known) with dated sources, plus "Other: use the number on your card or in your bank app". E-wallet: one provider's official report page plus a generic "report in your app" line, or the generic line only.
 - [ ] `data/call-scripts.json`: bank-call script with placeholders `{amount}` `{time}` `{payee}` `{account}`.
 - [ ] `data/recovery-rules.json`: red flags for "pay a fee and we recover your money", fake agents, "refund" links. Patterns in English and Bangla.
 - [ ] `data/demo-scenario.json`: the fictional case (about RM 1,200 sent by bank transfer 4 minutes ago after a fake police call, plus the later recovery-fee message).
@@ -24,7 +25,7 @@ You own what the app says and the story we tell. Everything must be correct, sou
 - [ ] Polish `README.md`.
 
 ## Video  (Oct 26, recorded by 18:00)
-- [ ] Record screen and voice-over, 1 to 3 minutes, English captions. Show the full journey working in fixture mode. Upload and hand the link to Ahnaf.
+- [ ] Record screen and voice-over, 1 to 3 minutes, English captions. Show the full journey working: live extraction on the fictional evidence if it is reliable; if fixture mode is used, say so in the description. Upload and hand the link to Ahnaf.
 
 ## Done means
 Every instruction in the app has a dated official source, Bangla reviewed, QA scenarios pass, video and description ready before Oct 26 23:00.
