@@ -24,7 +24,9 @@ Pitch line: *"After the loss."* Other scam entries detect or prevent scams. Firs
 | Saif | @hsaif2208-a11y | **all screens**: intake form, text paste and screenshot upload, EN/MS/BN switcher, action list, evidence timeline, call-script screen with copy button, recovery-scam warning banner, printable report, mobile layout, demo polish and animation, seeded demo scenario wired into the UI |
 | Rasha | @RashaOsman2 | **content and demo**: knowledge base of steps by payment type and time (each with a dated official source URL), call-script templates, recovery-scam red-flag rules, all emergency wording in EN/MS/BN, QA of 5 scam scenarios, README and Devpost description, demo script and video |
 
-Saif and Rasha depend on one shared data shape (steps, sources, translations). It is defined in `spec.md`; agree it before building.
+**Your task list:** [Ahnaf](handoff/ahnaf.md) · [Turjo](handoff/turjo.md) · [Saif](handoff/saif.md) · [Rasha](handoff/rasha.md)
+
+Saif and Rasha depend on one shared data shape (steps, sources, translations): [handoff/CONTRACT.md](handoff/CONTRACT.md). It is a draft until `spec.md` is merged; agree any change before building.
 
 ## Rules
 - Branches `<name>/<topic>`, pull requests into `main`, one reviewer from another owner. No direct pushes to `main`.
