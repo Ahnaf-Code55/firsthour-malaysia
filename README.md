@@ -15,4 +15,4 @@ VITE_FIXTURE=1 npm run dev     # demo with no key and no internet; press "Try th
 npm test                       # logic tests
 npm run build                  # type check + production build
 ```
-Live reading of messages needs `ANTHROPIC_API_KEY` in `.env` (see `.env.example`), then `npm run dev`.
+Live reading of messages needs one key in `.env` (see `.env.example`): `GEMINI_API_KEY` (free, from Google AI Studio) or `ANTHROPIC_API_KEY`. Then `npm run dev`. Free-tier Gemini may use what you send to improve Google products, so use only fictional evidence with it.

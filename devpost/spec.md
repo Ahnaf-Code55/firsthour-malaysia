@@ -192,6 +192,8 @@ firsthour-malaysia/
 - **Official sources** (malaysia.gov.my, PDRM, BNM, bank pages): read by Rasha by hand and recorded with the date; **the app does not fetch them at run time**.
 - No database, hosting, analytics or third-party scripts (Turjo's rules).
 
+- **Gemini API (free option)** via `@google/genai` — `models.generateContent` with model `gemini-3.8-flash`, JSON-schema output, optional inline image. Used first when `GEMINI_API_KEY` is set. Docs: <https://ai.google.dev/gemini-api/docs/models>, <https://ai.google.dev/gemini-api/docs/pricing>. Free-tier content may be used by Google to improve its products, so only fictional evidence belongs on it. *Model id and free-tier access from Malaysia not yet exercised with a real key.*
+
 ## Important Failure Modes
 - **The reader is offline, has no key, or returns bad output** → the plan still appears, a notice says the reader could not run, and the facts show as empty editable fields (PRD: "reading tool is offline"). In fixture mode the saved facts load instead.
 - **The AI returns a plausible but unquoted or hostile fact** (for example from "ignore previous instructions") → the fact is dropped because its quote isn't in the evidence, and the plan is unaffected because steps never read the evidence.
@@ -209,7 +211,7 @@ firsthour-malaysia/
 
 ## Decisions and Open Issues
 **Decisions** (stack proposed by the lead and carried from `handoff/CONTRACT.md`; implementation details derived from the PRD):
-- React + TypeScript + Vite, memory-only state, JSON content files, Vite-hosted `/api/extract`, Anthropic `claude-haiku-5-5` for fact reading — accepted by the lead, with the tradeoff that live reading needs a key and internet.
+- React + TypeScript + Vite, memory-only state, JSON content files, Vite-hosted `/api/extract`, Anthropic `claude-haiku-5-5` or free Gemini `gemini-3.8-flash` for fact reading — accepted by the lead, with the tradeoff that live reading needs a key and internet.
 - Facts must carry a verbatim quote or be dropped — derived from the scope's "facts pinned to evidence".
 - Steps and numbers only from `data/*.json` — scope rule, enforced by `buildPlan` and `check-sources`.
 
