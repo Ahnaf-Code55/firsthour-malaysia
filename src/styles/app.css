@@ -69,3 +69,4 @@ input[type=file] { font: inherit; }
   a { color: inherit; text-decoration: none; }
   .steps li, .warning { break-inside: avoid; }
 }
+.sources-print li, .sources-print small, .script-print, .facts-print dd { overflow-wrap: anywhere; }
