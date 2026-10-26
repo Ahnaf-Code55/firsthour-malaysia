@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FirstHour App Map</title>
+<style>
+:root {
+  --bg: #faf8f4;
+  --text: #1d1d1b;
+  --muted: #5b5b57;
+  --accent: #0b5f63;
+  --line: #d9d5cc;
+  --card: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161917; --text: #efefea; --muted: #b3b3ab; --accent: #5fc1c5; --line: #3a3d39; --card: #1f221f;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161917; --text: #efefea; --muted: #b3b3ab; --accent: #5fc1c5; --line: #3a3d39; --card: #1f221f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 1.8rem; margin: 0 0 8px; }
+h2 { font-size: 1.25rem; color: var(--accent); margin: 36px 0 12px; }
+h3 { font-size: 1.05rem; margin: 18px 0 4px; }
+p { margin: 8px 0; }
+.muted { color: var(--muted); }
+code {
+  font: 0.9em ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 5px;
+  overflow-wrap: anywhere;
+}
+pre {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  font: 0.9em ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+a { color: var(--accent); }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+ul { padding-left: 20px; }
+li { margin: 6px 0; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 10px 0;
+}
+.stop { border-left: 4px solid var(--accent); }
+.diagram { width: 100%; max-width: 360px; height: auto; display: block; margin: 12px auto; }
+.diagram text { fill: var(--text); font-family: system-ui, -apple-system, sans-serif; }
+.diagram .sub { fill: var(--muted); font-size: 11.5px; }
+.diagram .box { fill: var(--card); stroke: var(--accent); stroke-width: 1.5; }
+.diagram .arrow { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+details { margin: 10px 0; }
+summary { cursor: pointer; font-weight: 600; color: var(--accent); padding: 4px 0; }
+footer { margin-top: 40px; font-size: 0.9rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>FirstHour Malaysia: app map</h1>
+<p class="muted">A snapshot of the code on Oct 26, 2026. It can drift as the code changes.</p>
+
+<h2>Overview</h2>
+<p>FirstHour Malaysia gives a scam victim a sourced plan for the first hour. The person pastes a message or adds a screenshot, and the AI reads only the facts: the amount, the time, the payee, and how the scam started. Each fact must point to the exact words it came from. Plain code then builds the plan from dated official sources in <code>data/</code>, so the AI never writes a step or a phone number.</p>
+
+<h2>One real action, end to end</h2>
+<p>Press <strong>Try the sample case</strong>. The diagram follows that press through the code to the plan page.</p>
+<svg class="diagram" viewBox="0 0 360 580" role="img" aria-labelledby="diagram-title diagram-desc">
+  <title id="diagram-title">Flow from pressing Try the sample case to the plan page</title>
+  <desc id="diagram-desc">Eight boxes in a column: the button, App go, extractFacts, the POST endpoint, readFacts, validateFacts, buildPlan, and the plan page. Arrows point down between them.</desc>
+  <defs>
+    <marker id="head" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0b5f63"/>
+    </marker>
+  </defs>
+  <g>
+    <rect class="box" x="20" y="8" width="320" height="52" rx="8"/>
+    <text x="180" y="30" text-anchor="middle" font-size="14" font-weight="600">Press "Try the sample case"</text>
+    <text class="sub" x="180" y="48" text-anchor="middle">src/App.tsx sample()</text>
+  </g>
+  <line class="arrow" x1="180" y1="60" x2="180" y2="78" marker-end="url(#head)"/>
+  <g>
+    <rect class="box" x="20" y="80" width="320" height="52" rx="8"/>
+    <text x="180" y="102" text-anchor="middle" font-size="14" font-weight="600">go(): show loading, call extractFacts</text>
+    <text class="sub" x="180" y="120" text-anchor="middle">src/App.tsx</text>
+  </g>
+  <line class="arrow" x1="180" y1="132" x2="180" y2="150" marker-end="url(#head)"/>
+  <g>
+    <rect class="box" x="20" y="152" width="320" height="52" rx="8"/>
+    <text x="180" y="174" text-anchor="middle" font-size="14" font-weight="600">extractFacts()</text>
+    <text class="sub" x="180" y="192" text-anchor="middle">src/lib/extract.ts (fixture skips the server)</text>
+  </g>
+  <line class="arrow" x1="180" y1="204" x2="180" y2="222" marker-end="url(#head)"/>
+  <g>
+    <rect class="box" x="20" y="224" width="320" height="52" rx="8"/>
+    <text x="180" y="246" text-anchor="middle" font-size="14" font-weight="600">POST /api/extract</text>
+    <text class="sub" x="180" y="264" text-anchor="middle">vite.config.ts (dev server)</text>
+  </g>
+  <line class="arrow" x1="180" y1="276" x2="180" y2="294" marker-end="url(#head)"/>
+  <g>
+    <rect class="box" x="20" y="296" width="320" height="52" rx="8"/>
+    <text x="180" y="318" text-anchor="middle" font-size="14" font-weight="600">readFacts() asks the AI</text>
+    <text class="sub" x="180" y="336" text-anchor="middle">server/extract.ts (Gemini, else Anthropic)</text>
+  </g>
+  <line class="arrow" x1="180" y1="348" x2="180" y2="366" marker-end="url(#head)"/>
+  <g>
+    <rect class="box" x="20" y="368" width="320" height="52" rx="8"/>
+    <text x="180" y="390" text-anchor="middle" font-size="14" font-weight="600">validateFacts() drops unquoted facts</text>
+    <text class="sub" x="180" y="408" text-anchor="middle">server/validate.ts</text>
+  </g>
+  <line class="arrow" x1="180" y1="420" x2="180" y2="438" marker-end="url(#head)"/>
+  <g>
+    <rect class="box" x="20" y="440" width="320" height="52" rx="8"/>
+    <text x="180" y="462" text-anchor="middle" font-size="14" font-weight="600">buildPlan() picks steps</text>
+    <text class="sub" x="180" y="480" text-anchor="middle">src/lib/plan.ts, steps from data/steps.json</text>
+  </g>
+  <line class="arrow" x1="180" y1="492" x2="180" y2="510" marker-end="url(#head)"/>
+  <g>
+    <rect class="box" x="20" y="512" width="320" height="52" rx="8"/>
+    <text x="180" y="534" text-anchor="middle" font-size="14" font-weight="600">Your plan page</text>
+    <text class="sub" x="180" y="552" text-anchor="middle">src/pages/PlanPage.tsx</text>
+  </g>
+</svg>
+<p class="muted">In fixture mode the POST is skipped and saved facts are used. If the server fails, the sample case falls back to saved facts.</p>
+
+<h2>Reference route, not a completed tour</h2>
+<p class="muted">These three stops follow the same path. Nobody has walked this route as a tour yet, so treat it as a map to read, not a record of completed steps.</p>
+
+<div class="card stop">
+  <h3>1. extractFacts (<code>src/lib/extract.ts</code>)</h3>
+  <p>Search for <code>extractFacts</code>. In fixture mode it returns saved facts. Otherwise it posts the text or screenshot to <code>/api/extract</code>. The result is labelled live, fixture, or offline.</p>
+</div>
+<div class="card stop">
+  <h3>2. validateFacts (<code>server/validate.ts</code>)</h3>
+  <p>Search for <code>validateFacts</code>. A fact survives only if its quote appears word for word in the person's text. Free text that carries a phone number or a link is dropped, so it cannot reach the call script. With a screenshot only, there is no quote to check, so the person checks the value by eye.</p>
+</div>
+<div class="card stop">
+  <h3>3. buildPlan (<code>src/lib/plan.ts</code>)</h3>
+  <p>Search for <code>buildPlan</code>. A pure function with no AI. It keeps steps that match the payment type and time window, sorts them by priority, and fills the call script. Outside bank or e-wallet within one hour, it sets <code>outOfScope</code>.</p>
+</div>
+
+<h2>To change this, start here</h2>
+<ul>
+  <li><strong>Add or fix a step:</strong> <code>data/steps.json</code>. Each step needs a source URL and a <code>retrievedOn</code> date. <code>scripts/check-sources.mjs</code> fails the build when either is missing or older than 14 days.</li>
+  <li><strong>Change wording:</strong> <code>src/i18n/en.json</code> and <code>src/i18n/bn.json</code>. Keep the keys the same in both.</li>
+  <li><strong>Add a bank:</strong> <code>data/banks.json</code>.</li>
+  <li><strong>Add a scam warning rule:</strong> <code>data/recovery-rules.json</code>.</li>
+  <li><strong>Change the look:</strong> <code>src/styles/tokens.css</code>.</li>
+</ul>
+
+<h2>A practice to reuse</h2>
+<div class="card">
+  <p><strong>Decision:</strong> the rule "every number comes from a dated official source, and the AI never produces one" is written in <code>devpost/prd.md</code>. A product rule is only as good as its check.</p>
+  <p><strong>Evidence:</strong> <code>tests/validate.test.ts</code> covers free text that carries a phone number or link, <code>tests/injection.test.ts</code> covers hostile input, and <code>scripts/check-sources.mjs</code> enforces the dates. An AI review found that free text could still carry a phone number into the call script, which the tests then guarded.</p>
+  <p><strong>Reuse:</strong> turn each product rule into a test that fails when the rule breaks. Do this on any project where a wrong output could cause harm.</p>
+</div>
+
+<h2>How to run it again</h2>
+<pre><code>npm install
+VITE_FIXTURE=1 npm run dev     # no key needed, uses the saved sample case
+npm test                       # runs the unit and end-to-end tests</code></pre>
+<p>For live reading, put <code>GEMINI_API_KEY</code> in <code>.env</code>, then run <code>npm run dev</code> without the fixture flag. Keep the key on your machine only.</p>
+
+<footer>Snapshot of the code on Oct 26, 2026. Check the paths above before you rely on them.</footer>
+</main>
+</body>
+</html>
