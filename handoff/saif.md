@@ -1,5 +1,7 @@
 # Saif  @hsaif2208-a11y  (all screens)
 
+> **Oct 26: offline, work reassigned.** This file is kept for reference. Ahnaf is covering these tasks (see `HANDOFF.md`). If you are back, tell Ahnaf which part to take and work by pull request.
+
 ## Start here (paste this into your AI assistant)
 > You are helping me, **Saif**, build my part of FirstHour Malaysia with three teammates. Read, in order: `handoff/saif.md` (my tasks), `handoff/CONTRACT.md` (shared types), `devpost/prd.md` (what the product does), `devpost/spec.md` (how it is built), `devpost/scope.md`. A working starter UI is already on `main` (`src/pages`, `src/components`, `src/styles`); restyle and finish it, and build the CheckMessage component (use `scanMessage` in `src/lib/scan.ts`), the Printable summary page and the states. Follow `prd.md > Look and Feel` and `spec.md > Look and Feel`. Work on a branch named `saif/<topic>`, open a pull request to `main`, and do not edit files owned by someone else without asking. Run `npm install && npm test && npm run build` before every pull request. Every phone number and instruction in the app must come from a dated official source, never from AI.
 

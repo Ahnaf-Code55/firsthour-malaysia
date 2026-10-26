@@ -1,6 +1,6 @@
 # Handoff
 
-Status: **scope and PRD approved** (`devpost/scope.md`, `devpost/prd.md`); `spec.md` approved; `5-build` is next. Tasks below are the owner split and become GitHub issues once the spec is done.
+Status: **scope and PRD approved** (`devpost/scope.md`, `devpost/prd.md`); `spec.md` approved; `5-build` is next. **Oct 26 update: Saif and Rasha are offline, so the work is split between two people: Ahnaf (all front end, content, 70% of the back end) and Turjo (30% of the back end plus the full security audit).**
 
 ## Goal
 Win a top-3 prize ($1,250 / $750 / $500). Judged on **Design**, **Innovation/Idea**, **Presentation**. Reviewers do not run the code, so the **demo video** (1-3 min) must show the full journey working.
@@ -12,21 +12,20 @@ Pitch line: *"After the loss."* Other scam entries detect or prevent scams. Firs
 |---|---|
 | Oct 24 | scope, PRD, spec merged; data shape agreed |
 | Oct 25 | features done, security review started |
-| Oct 26, 14:00 | code freeze, only bug fixes after |
+| Oct 26, 14:00 | code freeze, only bug fixes after (Turjo's audit may continue until 20:00) |
 | Oct 26, 18:00 | demo video recorded |
 | Oct 26, 23:00 | submitted on Devpost (real deadline is Oct 27, 05:00 MYT) |
 
-## Owners
+## Owners (two-person split from Oct 26)
 | Person | GitHub | Owns |
 |---|---|---|
-| Ahnaf (lead, Devpost Representative) | @Ahnaf-Code55 | scope/PRD/spec, evidence-to-facts extraction (with a fixture mode so the demo runs without any API key), merging, Devpost submission |
-| Turjo | @TRahman2414 | **all security**: privacy rules (nothing stored), safe handling of uploads and text, threat model, dependency and secrets scan, check that every number has a dated source, final review before submission |
-| Saif | @hsaif2208-a11y | **all screens**: the three surfaces in `devpost/prd.md` (Start, Your plan, Printable summary): intake, facts with evidence, action list with ticks, call script with Copy, timeline, "Check a message" warning, EN/BN toggle, mobile layout, demo polish, sample case |
-| Rasha | @RashaOsman2 | **content and demo**: knowledge base of 6 to 8 steps (bank transfer under 1 h, plus e-wallet) (each with a dated official source URL), call-script templates, recovery-scam red-flag rules, all emergency wording in EN/BN, QA of 5 scam scenarios, README and Devpost description, demo script and video |
+| Ahnaf (lead, Devpost Representative) | @Ahnaf-Code55 | **All front end and design** (the three surfaces in `devpost/prd.md`, English and Bangla, look and feel, states, demo polish); **content** (steps, banks, recovery rules, translations, demo script, Devpost description); **70% of the back end** (plan, scan, extract, validate, Gemini/Anthropic reader, tests, CI core); merging; the video; the Devpost submission |
+| Turjo | @TRahman2414 | **30% of the back end** (screenshot handling `src/lib/image.ts`, `/api/extract` hardening, `scripts/check-sources.mjs`, CI checks) and the **full security audit** (threat model, `SECURITY.md`, CSP, XSS and prompt-injection tests, dependency and secrets scan, git-history scan, attacker walkthrough, written sign-off before the repo goes public) |
+| Saif, Rasha | offline | Their old task files ([saif](handoff/saif.md), [rasha](handoff/rasha.md)) are kept for reference. If either returns, they can take over a named part by pull request. |
 
-**Your task list:** [Ahnaf](handoff/ahnaf.md) · [Turjo](handoff/turjo.md) · [Saif](handoff/saif.md) · [Rasha](handoff/rasha.md)
+**Task lists:** [Ahnaf](handoff/ahnaf.md) · [Turjo](handoff/turjo.md)
 
-Saif and Rasha depend on one shared data shape (steps, sources, translations): [handoff/CONTRACT.md](handoff/CONTRACT.md). It is final now that `spec.md` is approved; agree any change before building.
+Everyone builds against one shared data shape: [handoff/CONTRACT.md](handoff/CONTRACT.md). It is final now that `spec.md` is approved; agree any change before building.
 
 ## Rules
 - Branches `<name>/<topic>`, pull requests into `main`, one reviewer from another owner. No direct pushes to `main`.
