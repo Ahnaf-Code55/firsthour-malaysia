@@ -1,6 +1,6 @@
 {
   "bn": {
-    "reviewedBy": "gpt-6-luna (AI second pass, 8 wording fixes applied)",
-    "status": "Drafted by Claude, reviewed by an AI second pass. A human Bangla reader should still skim the step texts before the video."
+    "reviewedBy": "GPT-6.1 Sol (AI review; human Bangla review pending)",
+    "status": "AI linguistic review complete; a human Bangla reader should still review the step text before the demo."
   }
 }
