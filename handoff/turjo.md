@@ -32,6 +32,13 @@ Cover everything in the repo, not only your files.
 - [ ] **Attacker walkthrough** of the demo: huge file, wrong file type, hostile text, offline mode, no key, bad key.
 - [ ] **Written sign-off** as a comment on a pull request. **Ahnaf does not make the repo public without it.** List any accepted risks.
 
+
+## Part 3: your next task, in parallel with the audit  (due Oct 26, 19:00 MYT)
+Ahnaf is recording the video and cannot also check the app end to end, and nobody on the team has read the Bangla yet.
+- [ ] **Bangla review (if you read Bangla; if not, tell Ahnaf now).** Read every string in `src/i18n/bn.json` next to `src/i18n/en.json`, especially the step texts (`step.*`), the warning texts (`flag.*`, `check.*`) and the disclaimer. Check meaning, calm natural wording, and that nothing promises money will come back. Fix by pull request (`turjo/bangla-review`), then set `reviewedBy` in `src/i18n/meta.json` to your name. Do not change keys, only values.
+- [ ] **QA run.** Follow `docs/qa-scenarios.md`: run the 5 scenarios in the live app (`npm run dev` with a Gemini key in `.env`, or `VITE_FIXTURE=1 npm run dev` for the sample), at phone width (375 x 812) in English and Bangla. Also test a PNG screenshot, a huge image, and a text file renamed to .png. Open a GitHub issue labelled `qa` for each mismatch with: steps, expected, actual.
+- [ ] Post both results as a short comment on issue #17.
+
 ## How to hand work back
 Open a pull request for each part, tag @Ahnaf-Code55, and keep the description short: what changed, how you tested it, anything you could not verify. If you find a serious problem in files you do not own, open a GitHub issue labelled `security` instead of editing them.
 
