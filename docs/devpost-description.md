@@ -10,4 +10,4 @@
 
 **What we learned.** The risk in an emergency tool is an invented phone number, so we split "the AI reads" from "code plans from sourced files". Official sources disagree (NSRC's hours differ between pages), so the app shows both and says to call the bank if nobody answers. Two teammates dropped offline on the last day, which taught us to keep the shared data shape small and the handoff files clear enough for anyone to pick up.
 
-**Honest limits.** Bank transfer and e-wallet within the first hour only. Two banks are sourced (Maybank, CIMB). The Bangla text was written by Claude and needs a native reader's review. [Edit before submitting: say whether the demo shows live AI reading or the saved sample reading.]
+**Honest limits.** Bank transfer and e-wallet within the first hour only. Two banks are sourced (Maybank, CIMB). The Bangla text was written by Claude and needs a native reader's review. The demo video shows live AI reading of the fictional sample messages. If the AI provider is down, the app falls back to a saved reading of the same fictional messages and labels it on screen.

@@ -1,7 +1,7 @@
 # Demo script (about 75 seconds)
 
 Record on a phone-sized window, English first, then a few seconds in Bangla. Captions in English. Use only the fictional sample case.
-Run: `VITE_FIXTURE=1 npm run dev` (or live mode if `scripts/live-check.mjs` shows 10/10).
+Run live mode: put `GEMINI_API_KEY` in `.env`, then `npm run dev` (no `VITE_FIXTURE`). Live check on Oct 26 gave 10/10 and 9/10. If the provider fails, the sample falls back to its saved reading and shows "Sample case: these facts come from a saved reading". Do two takes; keep a fixture take (`VITE_FIXTURE=1 npm run dev`) as backup.
 
 | Time | Show | Say |
 |---|---|---|
