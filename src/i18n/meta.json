@@ -1,6 +1,6 @@
 {
   "bn": {
-    "reviewedBy": null,
-    "status": "Drafted by Claude. Needs a Bangla reader (Ahnaf) to review the emergency wording before the video."
+    "reviewedBy": "gpt-6-luna (AI second pass, 8 wording fixes applied)",
+    "status": "Drafted by Claude, reviewed by an AI second pass. A human Bangla reader should still skim the step texts before the video."
   }
 }

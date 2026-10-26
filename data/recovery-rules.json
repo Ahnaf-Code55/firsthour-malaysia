@@ -6,11 +6,14 @@
     "patterns": {
       "en": [
         "(fee|pay|payment|deposit|charge)[^.]{0,70}(recover|refund|release|claim|retriev)",
-        "(recover|refund|release|retriev)[^.]{0,90}(fee|pay |payment|deposit|charge)"
+        "(recover|refund|release|retriev)[^.]{0,90}(fee|pay |payment|deposit|charge)",
+        "(fee|pay|payment|deposit|charge)[^.]{0,70}(money back|funds back|return (your )?(money|funds)|get (it|them) back|get your (money|funds))",
+        "(money back|funds back|return (your )?(money|funds)|get (it|them) back)[^.]{0,80}(fee|pay |payment|deposit|charge)"
       ],
       "bn": [
         "(ফি|চার্জ|জমা|টাকা দিতে)[^।]{0,60}(ফেরত|উদ্ধার)",
-        "(ফেরত|উদ্ধার)[^।]{0,60}(ফি|চার্জ|জমা)"
+        "(ফেরত|উদ্ধার)[^।]{0,60}(ফি|চার্জ|জমা)",
+        "(ফি|চার্জ|জমা)[^।]{0,60}(টাকা ফেরত|ফেরত পেতে|ফেরত পাওয়ার)"
       ]
     },
     "sources": [
