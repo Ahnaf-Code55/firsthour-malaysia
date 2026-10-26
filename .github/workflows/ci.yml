@@ -34,4 +34,4 @@ jobs:
           GITLEAKS_ENABLE_COMMENTS: "false"
           GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "false"
       - name: Scan full Git history
-        run: /tmp/gitleaks-8.24.3/gitleaks detect --source . --redact --verbose --exit-code 2
+        run: /tmp/gitleaks-8.24.3/gitleaks detect --source . --log-opts="--all" --redact --verbose --exit-code 2
