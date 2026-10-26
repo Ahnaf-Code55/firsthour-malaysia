@@ -65,4 +65,10 @@ describe("fixed findings", () => {
   it("a fee to get money back is flagged as a recovery fee", () => {
     expect(scanMessage("Pay RM300 processing fee to get your money back.", allRules).map((f) => f.id)).toContain("recovery-fee");
   });
+  it("flags a Bangla upfront payment request for a refund", () => {
+    expect(scanMessage("টাকা ফেরত পেতে আগে ৩০০ টাকা পাঠান", allRules).map((f) => f.id)).toContain("recovery-fee");
+  });
+  it("flags a Bangla police recovery-unit impersonation", () => {
+    expect(scanMessage("আমি পুলিশের টাকা উদ্ধার ইউনিটের কর্মকর্তা", allRules).map((f) => f.id)).toContain("fake-agent");
+  });
 });

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { t } from "../i18n/t";
 import { prepareImage } from "../lib/image";
 import type { Answers, Lang, Payment, Window } from "../types";
@@ -13,6 +13,7 @@ type Props = {
 
 export default function StartPage({ lang, answers, setAnswers, evidence, setEvidence, image, setImage, onGo, onSample }: Props) {
   const [imgError, setImgError] = useState("");
+  const shotRef = useRef<HTMLInputElement>(null);
   async function pick(file?: File) {
     setImgError("");
     if (!file) return;
@@ -39,9 +40,9 @@ export default function StartPage({ lang, answers, setAnswers, evidence, setEvid
       <textarea id="evidence" rows={7} value={evidence} onChange={(e) => setEvidence(e.target.value)} />
       <p className="muted">{t(lang, "start.evidence_hint")}</p>
       <label htmlFor="shot">{t(lang, "start.screenshot")}</label>
-      <input id="shot" type="file" accept="image/png,image/jpeg" onChange={(e) => pick(e.target.files?.[0])} />
+      <input ref={shotRef} id="shot" type="file" accept="image/png,image/jpeg" onChange={(e) => pick(e.target.files?.[0])} />
       <p className="muted">{t(lang, "start.screenshot_hint")}</p>
-      {image && <p>{t(lang, "image.added")} <button className="link" onClick={() => setImage(undefined)}>{t(lang, "image.remove")}</button></p>}
+      {image && <p>{t(lang, "image.added")} <button className="link" onClick={() => { setImage(undefined); if (shotRef.current) shotRef.current.value = ""; }}>{t(lang, "image.remove")}</button></p>}
       {imgError && <p className="banner" role="alert">{t(lang, `image.${imgError}`)}</p>}
       <button className="primary" onClick={onGo}>{t(lang, "start.go")}</button>
     </section>
