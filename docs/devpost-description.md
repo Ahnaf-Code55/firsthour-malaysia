@@ -1,0 +1,13 @@
+# Devpost description (draft)
+
+**What it does.** FirstHour Malaysia gives someone who has just sent money to a scammer a calm, sourced plan for the next hour, in English or Bangla. They paste the scam messages or add a screenshot. FirstHour pulls out the facts (amount, time, who was paid, the account number) and shows the exact line each one came from. Then it shows what to do first: call your bank's fraud line, call the National Scam Response Centre on 997, check the account on Semak Mule, make a police report. Each step has a tap-to-call button, the official source and the date we checked it. It fills in a call script they can copy for the bank, keeps a timeline as they tick steps off, and warns them if a later message offers to recover their money for a fee. It ends with a printable summary for the police and the bank.
+
+**Who it's for.** International students in Malaysia, who often face a scam alone, in a second language, with no idea who to call. The first test case is someone who sent about RM 1,200 by bank transfer after a fake police call.
+
+**What makes it different.** Most scam tools detect or prevent scams before the money moves. FirstHour starts after the loss. The AI only reads facts out of the evidence. Every phone number and instruction comes from a dated official source, and a fact is dropped if its quote isn't in what the person wrote. FirstHour never contacts a bank, files a report or promises to get money back.
+
+**How we built it.** React, TypeScript and Vite. A small server endpoint reads the evidence with an AI model (Gemini on the free tier, or Anthropic) and the reply is checked before anything is shown. The plan itself is built by plain code from sourced JSON files. A fixture mode runs the full demo with no key and no network. Planned with the Devpost Learn skills (`devpost/scope.md`, `prd.md`, `spec.md`).
+
+**What we learned.** The risk in an emergency tool is an invented phone number, so we split "the AI reads" from "code plans from sourced files". Official sources disagree (NSRC's hours differ between pages), so the app shows both and says to call the bank if nobody answers. Two teammates dropped offline on the last day, which taught us to keep the shared data shape small and the handoff files clear enough for anyone to pick up.
+
+**Honest limits.** Bank transfer and e-wallet within the first hour only. Two banks are sourced (Maybank, CIMB). The Bangla text was written by Claude and needs a native reader's review. [Edit before submitting: say whether the demo shows live AI reading or the saved sample reading.]
