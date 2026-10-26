@@ -39,7 +39,7 @@ Build mode: fast (expert learner, hard deadline Oct 26 23:00 MYT). **Four people
   Learner check: Paste the sample message and a harmless one.
   Commit: `Add recovery-scam message check`
 
-- [ ] **4. English/Bangla toggle, printable summary, and the boundary states**
+- [x] **4. English/Bangla toggle, printable summary, and the boundary states**
   Becomes usable: Toggle language anywhere without losing input; open a printable summary; out-of-scope and offline states show banners with generic steps.
   Why now: Completes all three surfaces and the PRD states before polishing.
   PRD ref: `prd.md > Language`, `prd.md > Screens and Layout`, `prd.md > States and Boundaries`
@@ -96,3 +96,4 @@ Activity mode:
 - Slice 3 delivered the logic (`scan.ts`, `recovery-rules.json` seed, tests); the CheckMessage component is Saif's. Slice 5 delivered `server/validate.ts`, `server/extract.ts`, the Vite `/api/extract` endpoint and the client `extractFacts` with fixture fallback; unit tests pass and the endpoint returns 503 `no_key` without a key. A live call with a real `ANTHROPIC_API_KEY` is **unverified** (no key in this environment), as is the model id; `src/lib/image.ts` (screenshot limits, EXIF strip) is Turjo's.
 - `scanMessage` takes the rules as an argument and tests both languages' patterns, so the spec signature `scanMessage(text, lang)` changed to `scanMessage(text, rules)`. Bangla patterns are a seed for Rasha to review.
 - Added Gemini (free tier) as the first-choice reader when `GEMINI_API_KEY` is set, Anthropic otherwise, after the lead asked for a free option. Model id taken from Google's models page; the docs did not state image or JSON support per model, so live behaviour is unverified until a key is available. Bad-key and no-key paths verified (502 `reader_failed`, 503 `no_key`, key not logged).
+- Oct 26: Saif and Rasha went offline, so the lead now covers all front end and content, and Turjo covers 30% of the back end plus the security audit (see `HANDOFF.md`). Slice 4 was built by the lead: `bn.json` (drafted by Claude, **Bangla wording still needs a native reader to review**, recorded in `src/i18n/meta.json`), printable summary, CheckMessage, bank picker with two sourced banks (Maybank, CIMB; a third bank was not verified), screenshot input calling Turjo's `prepareImage` (a stub until his pull request lands, so screenshots currently show the "paste the text instead" message).

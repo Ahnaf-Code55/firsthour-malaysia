@@ -1,7 +1,8 @@
 import { t } from "../i18n/t";
+import { hhmm } from "../lib/time";
 import type { Lang, Step, TimelineEvent } from "../types";
 
-const hhmm = (iso: string) => (iso ? new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "");
+
 
 export default function Timeline({ lang, events, steps }: { lang: Lang; events: TimelineEvent[]; steps: Step[] }) {
   if (!events.length) return <p className="muted">{t(lang, "timeline.empty")}</p>;

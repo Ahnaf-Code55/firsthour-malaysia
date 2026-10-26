@@ -1,6 +1,7 @@
 :root {
   --bg: #fbfaf7; --text: #14181c; --muted: #4a5560; --accent: #0b5f63; --accent-text: #fff;
-  --line: #d8d4c8; --warn: #b3261e; --card: #fff;
+  --line: #d8d4c8; --warn: #b3261e; --warn-bg: #fdecea; --card: #fff;
   --space: 1rem; --radius: 12px;
-  --font: "Noto Sans", "Noto Sans Bengali", system-ui, sans-serif;
+  --font: "Noto Sans Variable", "Noto Sans Bengali Variable", system-ui, sans-serif;
 }
+html:lang(bn) { --font: "Noto Sans Bengali Variable", "Noto Sans Variable", system-ui, sans-serif; }
