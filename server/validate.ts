@@ -2,27 +2,26 @@ import type { Channel, Facts } from "../src/types";
 
 const CHANNELS: Channel[] = ["phone_call", "sms", "whatsapp", "job_offer", "other"];
 const clean = (s: unknown, max = 120) => (typeof s === "string" ? s.replace(/[\u0000-\u001f<>]/g, " ").trim().slice(0, max) : "");
-const digits = (s: string) => s.replace(/\D/g, "");
-// Free text must never carry something actionable (a phone number, link or email) into the call script.
-const actionable = (s: string) => /https?:\/\/|www\.|@|\d[\d\s().-]{5,}\d/i.test(s);
-// Free-text facts are repeated in the call script. Keep them free of every 3+ digit
-// run so a guessed date, injected hotline or OCR-read account cannot become an instruction.
-const hasRiskyNumber = (s: string, allowTime = false) => {
-  const normalized = s.normalize("NFKC");
-  if (allowTime && /^\p{Nd}{1,2}:\p{Nd}{2}(?:\s+\p{L}+)?$/u.test(normalized)) return false;
-  // Count Unicode numeric code points after normalization, regardless of separators.
-  // This catches spaces, punctuation, zero-width marks, and non-ASCII digit scripts.
-  return [...normalized].filter((char) => /\p{N}/u.test(char)).length >= 3;
-};
+const normalizeDigits = (s: string) => s.normalize("NFKC").replace(/[০-৯]/g, (digit) => String(digit.charCodeAt(0) - 0x09e6));
+const digits = (s: string) => normalizeDigits(s).replace(/\D/g, "");
+const normalizedTime = (s: string) => normalizeDigits(s).toLowerCase().replace(/(\d)\s*(am|pm)\b/g, "$1 $2").replace(/\s+/g, " ").trim();
 const safeTime = (value: string, snippet?: string) => {
-  const normalized = value.normalize("NFKC");
-  const match = normalized.match(/^(?:[01]?\d|2[0-3]):[0-5]\d(?:\s+(?:today|yesterday))?$/i);
-  return !!match && (!snippet || snippet.normalize("NFKC").includes(match[0])) ;
+  const normalized = normalizedTime(value);
+  const match = normalized.match(/^(\d{1,2}):([0-5]\d)(?: (am|pm))?(?: (today|yesterday|আজ|গতকাল))?$/);
+  if (!match) return false;
+  const hour = Number(match[1]);
+  if (match[3] ? hour < 1 || hour > 12 : hour > 23) return false;
+  if (!snippet) return true; // Screenshot-only facts have no text quote to compare.
+  const quoted = normalizedTime(snippet);
+  let at = quoted.indexOf(normalized);
+  while (at >= 0) {
+    const before = quoted[at - 1] ?? "", after = quoted[at + normalized.length] ?? "";
+    if (!/[\p{L}\p{N}:]/u.test(before) && !/[\p{L}\p{N}:]/u.test(after)) return true;
+    at = quoted.indexOf(normalized, at + 1);
+  }
+  return false;
 };
-// A payee is a person or company name, never a sentence: at most 5 words, each capitalised (or a Malay name particle), no digits.
-const NAME_WORD = /^(?:\p{Lu}[\p{L}.'’-]*|bin|binti|bte|bt|a\/l|a\/p|s\/o|d\/o)$/u;
-const safeName = (v: string) => { const w = v.trim().split(/\s+/); return v.length <= 50 && w.length <= 5 && w.every((x) => NAME_WORD.test(x)) && !/[\p{N}]/u.test(v); };
-const tokens = (s: string) => (s.match(/\d[\d -]*\d|\d/g) ?? []).map(digits);
+const tokens = (s: string) => (normalizeDigits(s).match(/\d[\d -]*\d|\d/g) ?? []).map(digits);
 const CHANNEL_DESCRIPTIONS = {
   phone_call: "a phone call",
   sms: "a text message",
@@ -47,16 +46,16 @@ export function validateFacts(raw: unknown, evidence: string, imageOnly = false)
   };
 
   const a = r.amount, ag = grounded(a);
-  const amt = Number(a?.value);
-  if (a && ag.ok && Number.isFinite(amt) && amt > 0 && amt < 1e9 && (imageOnly || (ag.snippet!.replace(/,/g, "").match(/\d+(?:\.\d+)?/g) ?? []).some((n) => Number(n) === amt)))
+  const amt = typeof a?.value === "number" ? a.value : Number(normalizeDigits(String(a?.value ?? "")));
+  if (a && ag.ok && Number.isFinite(amt) && amt > 0 && amt < 1e9 && (imageOnly || (normalizeDigits(ag.snippet!).replace(/,/g, "").match(/\d+(?:\.\d+)?/g) ?? []).some((n) => Number(n) === amt)))
     out.amount = { value: { value: amt, currency: /^[A-Z]{3}$/.test(String(a.currency)) ? String(a.currency) : "MYR" }, snippet: ag.snippet };
 
   for (const k of ["occurredAt"] as const) {
     const f = r[k], g = grounded(f), v = clean(f?.value);
-    if (f && v && g.ok && safeTime(v, g.snippet) && !actionable(v) && !hasRiskyNumber(v, true)) out.occurredAt = { value: v.slice(0, 80), snippet: g.snippet };
+    if (f && v && g.ok && safeTime(v, g.snippet)) out.occurredAt = { value: v.slice(0, 80), snippet: g.snippet };
   }
-  const pe = r.payee, pg = grounded(pe), pv = clean(pe?.value, 60);
-  if (pe && pv && pg.ok && safeName(pv) && !actionable(pv) && (imageOnly || pg.snippet!.toLowerCase().includes(pv.toLowerCase()))) out.payee = { value: pv, snippet: pg.snippet };
+  // A quoted phrase can still be an instruction disguised as a name. The person
+  // enters the payee manually; no model-derived payee reaches the call script.
   const acc = r.account, ac = grounded(acc), accv = digits(String(acc?.value ?? ""));
   if (acc && ac.ok && accv.length >= 6 && accv.length <= 20 && (imageOnly || tokens(ac.snippet!).includes(accv))) out.account = { value: accv, snippet: ac.snippet };
 

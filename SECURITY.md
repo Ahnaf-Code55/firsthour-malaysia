@@ -8,6 +8,7 @@ FirstHour is a guide for people responding to a suspected scam. It does not cont
 - In live mode, text evidence and an optional resized screenshot are sent to this app's `/api/extract` endpoint, then to the configured AI provider for fact extraction. Fixture mode uses a saved fictional sample and makes no network request.
 - The model sees the supplied evidence and is asked to extract facts only. The server validates its response against exact evidence quotes and a fixed output schema. Live extraction leaves the payee blank because a scam message could misclassify an instruction as a name; enter and check the payee yourself before it appears in the call script. The model cannot add recovery steps or contact numbers to the plan.
 - Evidence, screenshots, API keys, and provider error details are not written to application logs. The endpoint applies input limits, a per-process rate limit, and provider timeouts.
+- Evidence is limited to 8,000 JavaScript UTF-16 code units. Clock times may use 12-hour or 24-hour notation and Bangla digits, but must be supported by the evidence quote. The API checks prepared JPEG marker structure, dimensions, scan data and the end marker before forwarding; this structural check is not a full image decoder.
 - Closing or reloading the page clears in-memory evidence. The browser, hosting provider, and selected AI provider may still process ordinary network and operational metadata under their own policies.
 
 ## Provider-specific warning

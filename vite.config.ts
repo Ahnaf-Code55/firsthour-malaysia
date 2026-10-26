@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
+import { MAX_BODY_BYTES, validateExtractRequest } from "./server/request";
 
 // Serves POST /api/extract from the dev server so the API key never reaches the browser bundle.
 function extractApi(keys: { gemini?: string; anthropic?: string }): Plugin {
@@ -8,8 +9,6 @@ function extractApi(keys: { gemini?: string; anthropic?: string }): Plugin {
     configureServer(server) {
       const WINDOW_MS = 60_000;
       const MAX_REQUESTS = 20;
-      const MAX_BODY_BYTES = 4 * 1024 * 1024;
-      const MAX_EVIDENCE_CHARS = 8_000;
       const requests = new Map<string, { startedAt: number; count: number }>();
       server.middlewares.use("/api/extract", async (req, res) => {
         const send = (code: number, body: object) => { res.statusCode = code; res.setHeader("content-type", "application/json"); res.end(JSON.stringify(body)); };
@@ -46,16 +45,9 @@ function extractApi(keys: { gemini?: string; anthropic?: string }): Plugin {
         let body: unknown;
         try { body = JSON.parse(Buffer.concat(chunks).toString()); }
         catch { return send(400, { error: "invalid_request" }); }
-        if (!body || typeof body !== "object" || Array.isArray(body)) return send(400, { error: "invalid_request" });
-        const { evidence = "", image } = body as { evidence?: unknown; image?: unknown };
-        if (typeof evidence !== "string" || (image !== undefined && typeof image !== "string")) return send(400, { error: "invalid_request" });
-        if (evidence.length > MAX_EVIDENCE_CHARS) return send(413, { error: "too_large" });
-        if (typeof image === "string") {
-          if (image.length > 3_800_000) return send(413, { error: "too_large" });
-          if (!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(image)) return send(400, { error: "invalid_request" });
-          const bytes = Buffer.from(image, "base64");
-          if (bytes.length < 3 || bytes[0] !== 0xff || bytes[1] !== 0xd8 || bytes[2] !== 0xff) return send(400, { error: "invalid_request" });
-        }
+        const checked = validateExtractRequest(body);
+        if (!checked.ok) return send(checked.status, { error: checked.error });
+        const { evidence, image } = checked;
         try {
           const { readFacts } = await server.ssrLoadModule("/server/extract.ts");
           send(200, { facts: await readFacts(evidence, keys, image) });
