@@ -17,8 +17,11 @@ const hasRiskyNumber = (s: string, allowTime = false) => {
 const safeTime = (value: string, snippet?: string) => {
   const normalized = value.normalize("NFKC");
   const match = normalized.match(/^(?:[01]?\d|2[0-3]):[0-5]\d(?:\s+(?:today|yesterday))?$/i);
-  return !!match && (!snippet || snippet.normalize("NFKC").includes(match[0].split(/\s+/)[0]));
+  return !!match && (!snippet || snippet.normalize("NFKC").includes(match[0])) ;
 };
+// A payee is a person or company name, never a sentence: at most 5 words, each capitalised (or a Malay name particle), no digits.
+const NAME_WORD = /^(?:\p{Lu}[\p{L}.'’-]*|bin|binti|bte|bt|a\/l|a\/p|s\/o|d\/o)$/u;
+const safeName = (v: string) => { const w = v.trim().split(/\s+/); return v.length <= 50 && w.length <= 5 && w.every((x) => NAME_WORD.test(x)) && !/[\p{N}]/u.test(v); };
 const tokens = (s: string) => (s.match(/\d[\d -]*\d|\d/g) ?? []).map(digits);
 const CHANNEL_DESCRIPTIONS = {
   phone_call: "a phone call",
@@ -52,6 +55,8 @@ export function validateFacts(raw: unknown, evidence: string, imageOnly = false)
     const f = r[k], g = grounded(f), v = clean(f?.value);
     if (f && v && g.ok && safeTime(v, g.snippet) && !actionable(v) && !hasRiskyNumber(v, true)) out.occurredAt = { value: v.slice(0, 80), snippet: g.snippet };
   }
+  const pe = r.payee, pg = grounded(pe), pv = clean(pe?.value, 60);
+  if (pe && pv && pg.ok && safeName(pv) && !actionable(pv) && (imageOnly || pg.snippet!.toLowerCase().includes(pv.toLowerCase()))) out.payee = { value: pv, snippet: pg.snippet };
   const acc = r.account, ac = grounded(acc), accv = digits(String(acc?.value ?? ""));
   if (acc && ac.ok && accv.length >= 6 && accv.length <= 20 && (imageOnly || tokens(ac.snippet!).includes(accv))) out.account = { value: accv, snippet: ac.snippet };
 

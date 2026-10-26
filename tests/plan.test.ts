@@ -29,7 +29,7 @@ describe("buildPlan", () => {
   });
   it("ticks become timeline entries in time order", () => {
     const p = buildPlan(facts, a("bank_transfer", "under_1h"), S, scripts, { "call-nsrc": "2026-10-23T06:40:00Z", "call-bank": "2026-10-23T06:35:00Z" });
-    expect(p.timeline.map((e) => e.text)).toEqual(["14:32 today", "call-bank", "call-nsrc"]);
+    expect(p.timeline.map((e) => e.text)).toEqual(["14:32", "call-bank", "call-nsrc"]);
   });
   it("every step has a dated source", () => {
     for (const s of S) {
