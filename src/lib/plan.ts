@@ -6,7 +6,7 @@ const matches = (s: Step, a: Answers) =>
   (s.appliesTo.payment === "any" || s.appliesTo.payment.includes(a.payment)) &&
   (s.appliesTo.window === "any" || s.appliesTo.window.includes(a.window));
 
-const money = (a: { value: number; currency: string }) =>
+export const money = (a: { value: number; currency: string }) =>
   a.currency === "MYR" ? `RM ${a.value.toLocaleString("en-MY")}` : `${a.currency} ${a.value.toLocaleString("en-MY")}`;
 
 export function fillScript(template: string, f: Facts): string {

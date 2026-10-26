@@ -4,7 +4,7 @@
     "name": "Maybank",
     "tel": "+60358914744",
     "source": {
-      "name": "Maybank - Report a Scam (Fraud Hotline +60-3-5891 4744)",
+      "name": "Maybank - Report a Scam (Fraud Hotline +60-3-5891 4744; 24 hours daily per Maybank's disputed-transaction page)",
       "url": "https://www.maybank2u.com.my/maybank2u/malaysia/en/personal/frequent_queries/scam-awareness/report-scam.page",
       "retrievedOn": "2026-10-26"
     }
@@ -16,6 +16,16 @@
     "source": {
       "name": "CIMB - Reporting instructions (24-hour Contact Centre +603 6204 7788)",
       "url": "https://www.cimb.com.my/en/business/help-and-support/security-fraud/security-and-fraud-awareness/reporting-instructions-personal.html",
+      "retrievedOn": "2026-10-26"
+    }
+  },
+  {
+    "id": "publicbank",
+    "name": "Public Bank",
+    "tel": "+60321773555",
+    "source": {
+      "name": "Public Bank - Contact Us (Case Management, 24 Hours, 03-2177 3555)",
+      "url": "https://www.pbebank.com/en/contact-us/",
       "retrievedOn": "2026-10-26"
     }
   }

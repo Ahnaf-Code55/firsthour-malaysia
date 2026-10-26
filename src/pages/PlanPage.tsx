@@ -17,7 +17,8 @@ export default function PlanPage({ lang, plan, facts, setFacts, ticks, readerOff
       {readerOffline ? <p className="banner">{t(lang, "facts.offline")}</p> : Object.keys(facts).length === 0 && <p className="muted">{t(lang, "facts.hint")}</p>}
       <FactsList lang={lang} facts={facts} onChange={setFacts} />
       {source === "fixture" && <p className="muted small">{t(lang, "reader.fixture")}</p>}
-      {source === "live" && <p className="muted small">{t(lang, "reader.live")}</p>}
+      {source === "live" && !Object.values(facts).some((f) => f?.snippet) && <p className="banner small">{t(lang, "reader.image")}</p>}
+      {source === "live" && Object.values(facts).some((f) => f?.snippet) && <p className="muted small">{t(lang, "reader.live")}</p>}
       <h2>{t(lang, "plan.steps")}</h2>
       <StepList lang={lang} steps={plan.steps} ticks={ticks} onTick={onTick} />
       {plan.script && (<><h2>{t(lang, "script.heading")}</h2><CallScript lang={lang} text={plan.script.filled} /></>)}

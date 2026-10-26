@@ -1,10 +1,11 @@
 import { t } from "../i18n/t";
 import { hhmm } from "../lib/time";
+import { money } from "../lib/plan";
 import Timeline from "../components/Timeline";
 import type { Facts, Lang, Plan, Ticks } from "../types";
 
 const KEYS = ["amount", "occurredAt", "payee", "account", "startedHow"] as const;
-const val = (f: Facts, k: (typeof KEYS)[number]) => (k === "amount" ? (f.amount ? `RM ${f.amount.value.value.toLocaleString("en-MY")}` : "") : f[k]?.value ?? "");
+const val = (f: Facts, k: (typeof KEYS)[number]) => (k === "amount" ? (f.amount ? money(f.amount.value) : "") : f[k]?.value ?? "");
 
 export default function SummaryPage({ lang, plan, facts, ticks }: { lang: Lang; plan: Plan; facts: Facts; ticks: Ticks }) {
   return (

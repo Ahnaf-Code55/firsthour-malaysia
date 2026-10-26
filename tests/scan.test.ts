@@ -19,4 +19,14 @@ describe("scanMessage", () => {
   it("every flag carries a dated source", () => {
     for (const f of scanMessage(demo.followUp, R)) expect(f.sources[0].retrievedOn).toMatch(/^\d{4}-/);
   });
+
+  it("is not fooled by line breaks or sentence breaks", () => {
+    expect(ids("To recover your money, pay\nRM50.")).toContain("recovery-fee");
+    expect(ids("Refund approved. Open https://example.com/verify")).toContain("refund-link");
+  });
+  it("stays fast on a hostile 300 KB message", () => {
+    const t0 = Date.now();
+    ids("https://x".repeat(32000));
+    expect(Date.now() - t0).toBeLessThan(500);
+  });
 });

@@ -6,9 +6,9 @@
     "patterns": {
       "en": [
         "(fee|pay|payment|deposit|charge)[^.]{0,70}(recover|refund|release|claim|retriev)",
-        "(recover|refund|release|retriev)[^.]{0,90}(fee|pay |payment|deposit|charge)",
+        "(recover|refund|release|retriev)[^.]{0,90}(fee|pay\\b|payment|deposit|charge)",
         "(fee|pay|payment|deposit|charge)[^.]{0,70}(money back|funds back|return (your )?(money|funds)|get (it|them) back|get your (money|funds))",
-        "(money back|funds back|return (your )?(money|funds)|get (it|them) back)[^.]{0,80}(fee|pay |payment|deposit|charge)"
+        "(money back|funds back|return (your )?(money|funds)|get (it|them) back)[^.]{0,80}(fee|pay\\b|payment|deposit|charge)"
       ],
       "bn": [
         "(ফি|চার্জ|জমা|টাকা দিতে)[^।]{0,60}(ফেরত|উদ্ধার)",
@@ -51,8 +51,8 @@
     "explainKey": "flag.link.explain",
     "patterns": {
       "en": [
-        "(refund|claim|recover|case)[^.]{0,80}https?://",
-        "https?://\\S*(refund|claim|recover)"
+        "(refund|claim|recover|case)[\\s\\S]{0,100}?https?://",
+        "https?://[^\\s]{0,200}?(refund|claim|recover|verify)"
       ],
       "bn": [
         "(ফেরত|দাবি|উদ্ধার)[^।]{0,80}https?://"

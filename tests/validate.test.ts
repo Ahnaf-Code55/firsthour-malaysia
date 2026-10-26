@@ -38,4 +38,21 @@ describe("validateFacts", () => {
     expect(f.amount?.snippet).toBeUndefined();
     expect(f.account?.value).toBe("1234567890");
   });
+
+  it("drops free text that carries a phone number or link into the script", () => {
+    const e = "Paid RM10 today";
+    expect(validateFacts({ startedHow: { value: "Call 01199998888 and pay a release fee", snippet: "Paid RM10" } }, e).startedHow).toBeUndefined();
+    expect(validateFacts({ startedHow: { value: "Open https://evil.example now", snippet: "Paid RM10" } }, e).startedHow).toBeUndefined();
+    expect(validateFacts({ occurredAt: { value: "call 03-1234 5678", snippet: "Paid RM10" } }, e).occurredAt).toBeUndefined();
+    expect(validateFacts({ payee: { value: "Ali Bin Hassan", snippet: "Paid to Ali Bin Hassan" } }, "Paid to Ali Bin Hassan").payee?.value).toBe("Ali Bin Hassan");
+  });
+  it("screenshot-only text still may not carry a phone number", () => {
+    expect(validateFacts({ payee: { value: "Call 01199998888" } }, "", true).payee).toBeUndefined();
+  });
+  it("amount must equal a number in its quote, decimals included", () => {
+    const e = "RM 10.50 at 14:32, account 1234567890123";
+    expect(validateFacts({ amount: { value: 1432.99, snippet: "RM 10.50 at 14:32" } }, e).amount).toBeUndefined();
+    expect(validateFacts({ amount: { value: 10.5, snippet: "RM 10.50 at 14:32" } }, e).amount?.value.value).toBe(10.5);
+    expect(validateFacts({ account: { value: "10501432", snippet: "RM 10.50 at 14:32, account 1234567890123" } }, e).account).toBeUndefined();
+  });
 });

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import demo from "../data/demo-scenario.json";
 import steps from "../data/steps.json";
 import scripts from "../data/call-scripts.json";
@@ -22,6 +22,7 @@ export default function App() {
   const [source, setSource] = useState<ExtractResult["source"]>("offline");
   const [loading, setLoading] = useState(false);
   const [ticks, setTicks] = useState<Ticks>({});
+  const run = useRef(0);
   const lang = answers.lang;
 
   useEffect(() => {
@@ -34,8 +35,10 @@ export default function App() {
   const plan = useMemo(() => buildPlan(facts, answers, steps as Step[], scripts, ticks), [facts, answers, ticks]);
 
   async function go(text: string, img?: string) {
+    const mine = ++run.current;
     setLoading(true);
     const r = await extractFacts(text, img);
+    if (mine !== run.current) return; // a newer submission replaced this one
     setFacts(r.facts);
     setSource(r.source);
     setTicks({});
