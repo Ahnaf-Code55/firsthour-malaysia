@@ -10,6 +10,8 @@ Event: Build With AI: Basics. Required: demo video (1 to 3 min), public repo URL
 
 **"Try it out" links:** https://github.com/Ahnaf-Code55/firsthour-malaysia (run with `VITE_FIXTURE=1 npm run dev`, press "Try the sample case")
 
+**License URL (needs the repo to be public):** https://github.com/Ahnaf-Code55/firsthour-malaysia/blob/main/LICENSE (MIT)
+
 **Built with:** react, typescript, vite, gemini-api, claude, kokoro, vitest, node.js, devpost-learn-skills
 
 **Image gallery:** `demo-video/gallery/1-threads.jpg` to `5-summary.jpg` (video frames). Thumbnail: `1-threads.jpg`.
