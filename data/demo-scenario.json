@@ -3,7 +3,7 @@
     "payment": "bank_transfer",
     "window": "under_1h"
   },
-  "evidence": "Caller (+60 11-5555 0100): Good afternoon, this is Inspector Faiz from Bukit Aman. Your passport number is linked to a money laundering case. Do not tell anyone or you will be arrested.\nCaller: To prove your money is clean, move your savings to the Bank Negara safe account today. Account 1234567890123, name Ali Bin Hassan.\nMe: I only have RM1,200 now.\nCaller: That is enough. Transfer it now and send me the receipt.\nMe: I have transferred RM1,200 at 14:32. Receipt sent.\nCaller: Thank you. Wait for our officer to call you.",
+  "evidence": "Caller (+60 11-5555 0100): This is Inspector Faiz from Bukit Aman. Your passport number is linked to a money laundering case. Do not tell anyone or you will be arrested.\nCaller: To prove your money is clean, move your savings to the Bank Negara safe account today. Account 1234567890123, name Ali Bin Hassan.\nMe: I only have RM1,200 now.\nCaller: That is enough. Transfer it now and send me the receipt.\nMe: I have transferred RM1,200 at 14:32. Receipt sent.\nCaller: Thank you. Wait for our officer to call you.",
   "facts": {
     "amount": {
       "value": {
@@ -26,7 +26,7 @@
     },
     "startedHow": {
       "value": "A phone call from someone claiming to be a police inspector",
-      "snippet": "this is Inspector Faiz from Bukit Aman"
+      "snippet": "This is Inspector Faiz from Bukit Aman"
     },
     "channel": {
       "value": "phone_call",
