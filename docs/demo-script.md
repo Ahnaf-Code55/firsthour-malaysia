@@ -19,3 +19,6 @@ Notes
 - Say once, clearly: other tools detect scams; FirstHour starts after the loss.
 - If fixture mode is used, say "this sample runs from a saved reading" in the description, not in the voice-over.
 - Do not promise recovery of money anywhere.
+
+## Generated video (Oct 26)
+`demo-video/firsthour-demo.mp4` (76 s, 1920x1080, English captions, no voice-over, ignored by git) was made from the live app: a real run with live AI reading (the app showed "Read by AI from your messages") captured at phone size, with each step captioned. To add a voice-over, record yourself reading the "Say" column above while it plays and mix it in, or record your own screen capture following this script.
