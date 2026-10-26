@@ -28,3 +28,6 @@ Planned with the Devpost Learn skills: [scope](devpost/scope.md), [PRD](devpost/
 
 ## Limits
 Bank transfer and e-wallet within the first hour. Three banks sourced (Maybank, CIMB, Public Bank). No Malay yet. Screenshots are resized and stripped of metadata in the browser, and read by the AI only when a key is set.
+
+## License
+MIT, see [LICENSE](LICENSE).
