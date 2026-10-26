@@ -1,5 +1,7 @@
 # Ahnaf (lead)  @Ahnaf-Code55
 
+> **Oct 26: Saif and Rasha are offline.** You now also own all front end and design, all content and translations, the demo script, description and video, and 70% of the back end. Turjo has 30% of the back end and the full security audit (`handoff/turjo.md`). The old task lists in `handoff/saif.md` and `handoff/rasha.md` are your checklists for the parts you cover.
+
 You own the plan, the logic, the merging and the submission. Dates are Malaysia time.
 
 ## Plan documents  (due Oct 24)
